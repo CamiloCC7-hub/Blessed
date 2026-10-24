@@ -22,9 +22,13 @@
     birthday: { label: 'SÍ, ES UNA SORPRESA REAL', text: 'Si celebras tu cumpleaños en Cecilia, te regalan un postre y una serenata. Sin costo: tú solo tienes que decidir si cantas el coro.', source: '' },
     quality: { label: 'LA PROMESA DE LA CASA', text: 'La apuesta de Cecilia es que la calidad de la comida y el cariño de la atención hagan que la cuenta se sienta pequeña junto a la experiencia. Y que quieras volver.', source: '' },
     celebrate: { label: 'PLAN REDONDO', text: 'Cumpleaños en Cecilia: postre de regalo, serenata y un motivo adicional para soplar las velas con ganas.', source: '' },
-    cecilia: { label: 'EL NOMBRE DE LA CASA', text: 'Cecilia es la madre del dueño. El restaurante lleva su nombre para honrar a la mujer cuyo esfuerzo abrió camino para toda su familia.', source: '' },
-    roots: { label: 'CINCO HIJOS, MUCHOS SUEÑOS', text: 'Cecilia vendía empanadas, fritos y arepas para mantener a sus cinco hijos y ayudarles a estudiar. Su perseverancia está en el origen de esta historia.', source: '' },
-    journey: { label: 'UNA HISTORIA QUE CRECIÓ', text: 'La familia comenzó con un pequeño restaurante en El Chocó. Después llegaron sucursales en Montería y Chinú, y la historia siguió hasta Sahagún, Córdoba.', source: '' },
+    cecilia: { label: 'PISTA RESUELTA · EL NOMBRE', text: 'La inspiración fue Cecilia, la madre del dueño. Con cinco hijos y pocos recursos, se rebuscaba vendiendo empanadas, fritos y arepas para darles estudio y una vida mejor. Por eso esta casa lleva su nombre.', source: '' },
+    roots: { label: 'PISTA RESUELTA · EL PRIMER PASO', text: 'Después de estudiar y graduarse, sus hijos abrieron un pequeño restaurante en El Chocó. Esa primera mesa fue el comienzo del camino de la familia.', source: '' },
+    journey: { label: 'PISTA RESUELTA · EL CAMINO', text: 'Después del primer restaurante en El Chocó, la familia abrió sucursales en Montería y Chinú; hace alrededor de cinco meses llegó a su sede más reciente en Sahagún, Córdoba.', source: '' },
+    cordobaMote: { label: 'PISTA DE CÓRDOBA · EL MOTE', text: 'El mote de queso se apoya en dos protagonistas: ñame y queso costeño. El ñame le aporta su cuerpo y el queso, su carácter salado. Está entre los platos emblemáticos de las sabanas de Córdoba y Sucre.', source: 'https://mng.mincultura.gov.co/Sitios/patrimonio/bibliotecas-de-cocinas/tomos/tomo15.pdf' },
+    cordobaGallina: { label: 'PISTA DE CÓRDOBA · LA GALLINA', text: 'La gallina guisada forma parte de las recetas tradicionales que la Gobernación de Córdoba destaca junto al mote de queso en su proyecto “Mujeres con sabor a Córdoba”, que también llegó a Sahagún.', source: 'https://www.cordoba.gov.co/publicaciones/785/mujeres-con-sabor-a-cordoba-exploracion-creativa-culinaria/' },
+    cordobaBocachico: { label: 'PISTA DE CÓRDOBA · EL RÍO', text: 'El sancocho de bocachico aparece entre los sabores típicos que la Gobernación destaca en la cocina cordobesa: una pista de cuánto conversa esta cocina con sus ríos.', source: 'https://www.cordoba.gov.co/publicaciones/18/turismo/' },
+    cordobaArroz: { label: 'PISTA DE CÓRDOBA · LA MESA', text: 'Mote de queso, sancocho de bocachico, arroz con coco, queso costeño y suero: la Gobernación reúne estos sabores entre los platos representativos del departamento. ¿Cuál te falta probar?', source: 'https://www.cordoba.gov.co/publicaciones/18/turismo/' },
     wine: { label: 'EL COLOR VINO', text: 'En esta propuesta, el vino da continuidad a la identidad de Cecilia y aporta una sensación de calidez alrededor de la mesa.', source: '' },
     gold: { label: 'EL DETALLE DORADO', text: 'El dorado aparece como un acento de celebración: un pequeño destello para enmarcar los momentos especiales.', source: '' },
     ivory: { label: 'UN RESPIRO MARFIL', text: 'El marfil abre espacio y deja descansar la vista entre los tonos profundos y los detalles cálidos.', source: '' }
@@ -39,7 +43,7 @@
   const sparkleLayer = document.querySelector('.sparkle-layer');
   let lastTrigger = null;
   let randomIndex = 0;
-  const randomFacts = Object.keys(facts);
+  const randomFacts = ['smell', 'herbs', 'eyes', 'chili', 'vegetables', 'slow', 'cordobaMote', 'cordobaGallina', 'cordobaBocachico', 'cordobaArroz'];
 
   function sparkle(target) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !sparkleLayer) return;
@@ -65,9 +69,10 @@
     lastTrigger = trigger;
     label.textContent = fact.label;
     text.textContent = fact.text;
-    title.textContent = key === 'birthday' || key === 'celebrate' ? '¡Que empiece la celebración!' : key === 'familia' ? 'Talento hecho en Sahagún' : key === 'quality' ? 'Una promesa con cariño' : '¿Lo sabías?';
+    title.textContent = key === 'birthday' || key === 'celebrate' ? '¡Que empiece la celebración!' : key === 'familia' ? 'Talento hecho en Sahagún' : key === 'quality' ? 'Una promesa con cariño' : key === 'cecilia' || key === 'roots' || key === 'journey' || key.startsWith('cordoba') ? 'Pista resuelta' : '¿Lo sabías?';
     sourceLink.hidden = !fact.source;
     if (fact.source) sourceLink.href = fact.source;
+    sourceLink.textContent = 'Ver de dónde viene la pista ↗';
     panel.hidden = false;
     panel.classList.remove('is-open');
     requestAnimationFrame(() => panel.classList.add('is-open'));
@@ -111,6 +116,38 @@
     if (!panel.hidden && !panel.contains(event.target) && !event.target.closest('[data-fact]')) closeFact();
   });
 
+
+  const dishLightbox = document.querySelector('#dish-lightbox');
+  const lightboxImage = document.querySelector('#dish-lightbox-image');
+  const lightboxTitle = document.querySelector('#dish-lightbox-title');
+  const lightboxClose = dishLightbox?.querySelector('.lightbox-close');
+  let activeDishImage = null;
+  function openDishImage(image) {
+    if (!dishLightbox || !lightboxImage) return;
+    activeDishImage = image;
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt;
+    lightboxTitle.textContent = image.alt.replace(/^Imagen ilustrativa de /, '');
+    image.setAttribute('aria-pressed', 'true');
+    dishLightbox.showModal();
+    sparkle(image);
+  }
+  function closeDishImage() {
+    if (!dishLightbox?.open) return;
+    dishLightbox.close();
+  }
+  document.querySelectorAll('.dish-card[data-dish-card] .dish-visual img[role="button"]').forEach((image) => {
+    image.addEventListener('click', () => openDishImage(image));
+    image.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openDishImage(image); }
+    });
+  });
+  lightboxClose?.addEventListener('click', closeDishImage);
+  dishLightbox?.addEventListener('click', (event) => { if (event.target === dishLightbox) closeDishImage(); });
+  dishLightbox?.addEventListener('close', () => {
+    if (activeDishImage) { activeDishImage.setAttribute('aria-pressed', 'false'); activeDishImage.focus({ preventScroll: true }); }
+  });
+
   const dishCards = Array.from(document.querySelectorAll('[data-dish-card]'));
   const dishFeedback = document.querySelector('#dish-feedback');
   const pointerTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -129,16 +166,6 @@
       sparkle(button);
       const saved = dishCards.filter((item) => item.querySelector('[data-dish-toggle]').getAttribute('aria-pressed') === 'true').map((item) => item.querySelector('h3').innerText.replace(/\s+/g, ' ').trim());
       dishFeedback.textContent = saved.length ? 'Tu lista de antojos: ' + saved.join(' y ') + '. Solo queda visualmente guardada; no genera un pedido.' : 'Toca “Guardar mi antojo” y arma tu pequeña lista. Es solo una interacción visual; no genera un pedido.';
-    });
-
-    const zoomButton = card.querySelector('.zoom-toggle');
-    const zoomLabel = zoomButton.querySelector('span');
-    zoomButton.addEventListener('click', () => {
-      const zoomed = zoomButton.getAttribute('aria-pressed') !== 'true';
-      zoomButton.setAttribute('aria-pressed', String(zoomed));
-      card.classList.toggle('is-zoomed', zoomed);
-      zoomLabel.textContent = zoomed ? 'Cerrar detalle' : 'Ver de cerca';
-      sparkle(zoomButton);
     });
 
     if (pointerTilt) {

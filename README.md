@@ -15,7 +15,9 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 - Textos de bienvenida y atención con un tono cercano y juguetón.
 - La carta muestra inicialmente las dos entradas solicitadas y un botón despliega 29 opciones adicionales, agrupadas en platos principales, menú infantil, postres y bebidas. Cada opción incluye precio, descripción e imagen ilustrativa, con zoom y lista visual de antojos.
 - Relato de Cecilia, el origen del nombre, el recorrido familiar y el equipo.
-- Curiosidades interactivas, pequeños destellos y animaciones al desplazarse; se respeta la preferencia de movimiento reducido.
+- Curiosidades en formato de pistas sobre el mote, la gallina guisada y el bocachico cordobeses, además de respuestas interactivas sobre la historia de Cecilia.
+- Las imágenes de los platos abren una vista ampliada al tocarlas o enfocarlas con teclado; las tarjetas de momentos tienen fotografía, vidrio translúcido y movimiento suave.
+- La celebración de cumpleaños incluye luces, destellos y una ilustración animada de torta con velas. Se respeta la preferencia de movimiento reducido.
 - Reserva y carta completa conectan con Menupp. También se incluyen accesos al formulario de opinión, ubicaciones y redes sociales, más un enlace telefónico directo.
 - Las fotografías y tipografías se sirven desde fuentes externas; se requiere internet para cargarlas.
 
