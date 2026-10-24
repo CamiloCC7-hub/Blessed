@@ -166,28 +166,4 @@
     if (!scrollQueued) { window.requestAnimationFrame(updateProgress); scrollQueued = true; }
   }, { passive: true });
   updateProgress();
-
-  const parallaxImages = document.querySelectorAll('[data-parallax-image]');
-  if (!reducedMotion && window.gsap && window.ScrollTrigger && parallaxImages.length) {
-    gsap.registerPlugin(ScrollTrigger);
-    parallaxImages.forEach((image) => {
-      gsap.fromTo(image,
-        { autoAlpha: 0, scale: 0.7, y: 0 },
-        {
-          autoAlpha: 1,
-          scale: 1.2,
-          y: 120, // 120 px over 600 px of scroll makes the image travel 20% less than the page.
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: image,
-            start: 'top 85%',
-            end: '+=600',
-            scrub: true,
-            invalidateOnRefresh: true
-          }
-        }
-      );
-    });
-    window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
-  }
 })();

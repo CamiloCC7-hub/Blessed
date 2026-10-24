@@ -37,7 +37,3 @@
 @media(prefers-reduced-motion:reduce){.zoom-toggle,.zoom-toggle span:last-child,.dish-card.is-zoomed .dish-visual img{transition:none}.dish-card.is-zoomed .dish-visual img{transform:none}}
 
 .button,.curiosity-trigger,.fact-close,.image-peek,.palette-chip,.zoom-toggle,.dish-select{touch-action:manipulation;-webkit-tap-highlight-color:transparent}.button:active,.curiosity-trigger:active,.fact-close:active,.image-peek:active,.palette-chip:active,.zoom-toggle:active{transform:scale(.97)}
-
-/* GSAP controls image transforms while ScrollTrigger scrubs the timeline. */
-[data-parallax-image]{transform-origin:center center;will-change:transform,opacity}.dish-visual img{transition:filter .5s!important}.dish-card:hover .dish-visual img{transform:none}.dish-card.is-zoomed .dish-visual{transform:scale(1.025);transition:transform .5s cubic-bezier(.2,.75,.25,1)}.dish-card.is-zoomed .dish-visual img{transition:none!important}
-@media(prefers-reduced-motion:reduce){[data-parallax-image]{will-change:auto}.dish-card.is-zoomed .dish-visual{transform:none;transition:none}}

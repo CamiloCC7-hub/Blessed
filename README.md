@@ -16,8 +16,7 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 - Panel interactivo con curiosidades sobre sabor, el origen del nombre Cecilia, la historia de la familia, el equipo, los cumpleaños y la paleta cromática.
 - Destellos discretos, animaciones al entrar en pantalla, tarjetas con detalles al pasar el cursor y una línea de progreso de lectura; se respeta la preferencia de movimiento reducido.
 - Formulario de reserva con validación nativa y mensaje de demostración; no guarda ni transmite datos y no confirma reservas.
-- Desplazamiento parallax GSAP/ScrollTrigger en tres imágenes (hero y las dos entradas): opacidad 0→1 y escala 0.7→1.2 durante 600 px, easing power2.out y desplazamiento relativo de 20%. Se omite cuando el sistema pide movimiento reducido.
-- Fotografías ilustrativas servidas desde sus fuentes externas con crédito visible, tipografías de Google Fonts y GSAP/ScrollTrigger desde CDN; se requiere conexión a internet para esos recursos.
+- Fotografías ilustrativas servidas desde sus fuentes externas con crédito visible, y tipografías de Google Fonts; se requiere conexión a internet para esos recursos.
 
 ## Antes de publicar
 
