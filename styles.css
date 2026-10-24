@@ -109,3 +109,9 @@
 @media(max-width:1100px){.site-header{flex-wrap:wrap;justify-content:center;padding:.7rem clamp(.8rem,3vw,2rem)}.brand{margin-right:auto}.main-nav{flex:1 1 100%;justify-content:center;flex-wrap:wrap;gap:.15rem}.main-nav a{font-size:.72rem;padding:.48rem .58rem}}
 @media(max-width:600px){.site-header{display:flex;flex-direction:column;align-items:stretch;gap:.6rem;padding:.6rem .7rem .7rem}.brand{align-self:center;margin:0}.brand-logo{width:43px;height:43px}.brand-name{font-size:2rem}.main-nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;border-radius:20px;padding:.3rem;mask-image:linear-gradient(90deg,#000 0 94%,transparent)}.main-nav::-webkit-scrollbar{display:none}.main-nav a{flex:0 0 auto;font-size:.68rem;padding:.48rem .62rem}.main-nav .nav-cta{margin-left:.1rem}.hero-note{right:1rem;bottom:1rem;gap:.28rem;padding:.48rem .65rem;font-size:.52rem;letter-spacing:.06em}.hero-note .brand-script{font-size:1.38rem}.entries-section .dish-copy{gap:.7rem}.entries-section .dish-copy>p{font-size:1rem}}
 @media(prefers-reduced-motion:reduce){.site-header,.main-nav a{transition:none}.main-nav a:hover{transform:none}}
+
+/* La navegación comparte la firma caligráfica del emblema Cecilia */
+.main-nav a{font-family:'Great Vibes',cursive;font-size:1.58rem;line-height:1.05;letter-spacing:0;text-transform:none;padding:.52rem .76rem}.main-nav .nav-cta{font-size:1.52rem;padding:.62rem 1rem}.main-nav a:hover,.main-nav a:focus-visible{letter-spacing:.015em}
+@media(max-width:1100px){.main-nav a{font-size:1.48rem;padding:.46rem .66rem}.main-nav .nav-cta{font-size:1.43rem}}
+@media(max-width:600px){.main-nav a{font-size:1.42rem;padding:.47rem .63rem}.main-nav .nav-cta{font-size:1.38rem}}
+@media(prefers-reduced-motion:reduce){.main-nav a:hover{letter-spacing:0}}
