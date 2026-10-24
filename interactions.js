@@ -96,6 +96,53 @@
     });
   }
 
+  const dishCards = Array.from(document.querySelectorAll('[data-dish-card]'));
+  const dishFeedback = document.querySelector('#dish-feedback');
+  const pointerTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  dishCards.forEach((card) => {
+    const button = card.querySelector('[data-dish-toggle]');
+    const label = card.querySelector('.dish-select-label');
+    const title = card.querySelector('h3').innerText.replace(/\s+/g, ' ').trim();
+    button.addEventListener('click', () => {
+      const selected = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(selected));
+      card.classList.toggle('is-selected', selected);
+      label.textContent = selected ? 'Guardado en mi lista' : 'Guardar mi antojo';
+      card.querySelector('.heart-icon').textContent = selected ? '♥' : '♡';
+      button.classList.remove('is-tapped');
+      requestAnimationFrame(() => button.classList.add('is-tapped'));
+      sparkle(button);
+      const saved = dishCards.filter((item) => item.querySelector('[data-dish-toggle]').getAttribute('aria-pressed') === 'true').map((item) => item.querySelector('h3').innerText.replace(/\s+/g, ' ').trim());
+      dishFeedback.textContent = saved.length ? 'Tu lista de antojos: ' + saved.join(' y ') + '. Solo queda visualmente guardada; no genera un pedido.' : 'Toca “Guardar mi antojo” y arma tu pequeña lista. Es solo una interacción visual; no genera un pedido.';
+    });
+
+    const zoomButton = card.querySelector('.zoom-toggle');
+    const zoomLabel = zoomButton.querySelector('span');
+    zoomButton.addEventListener('click', () => {
+      const zoomed = zoomButton.getAttribute('aria-pressed') !== 'true';
+      zoomButton.setAttribute('aria-pressed', String(zoomed));
+      card.classList.toggle('is-zoomed', zoomed);
+      zoomLabel.textContent = zoomed ? 'Cerrar detalle' : 'Ver de cerca';
+      sparkle(zoomButton);
+    });
+
+    if (pointerTilt) {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        card.style.setProperty('--tilt-x', ((.5 - y) * 3.5) + 'deg');
+        card.style.setProperty('--tilt-y', ((x - .5) * 4.5) + 'deg');
+        card.style.setProperty('--shine-x', (x * 100) + '%');
+        card.style.setProperty('--shine-y', (y * 100) + '%');
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+    }
+  });
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.intro, .menu-section, .quote-band, .spaces, .team-story, .birthday, .little-surprise, .reservation, .contact');
   if (!reducedMotion && 'IntersectionObserver' in window) {
