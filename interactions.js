@@ -1,4 +1,32 @@
 (() => {
+  const siteHeader = document.querySelector('#site-header');
+  const navPeek = document.querySelector('.nav-peek');
+  if (siteHeader && navPeek) {
+    let navOpen = false;
+    const collapseAfter = 145;
+    const syncNavigation = () => {
+      const scrolled = window.scrollY > collapseAfter;
+      document.body.classList.toggle('nav-scrolled', scrolled);
+      if (!scrolled) navOpen = false;
+      document.body.classList.toggle('nav-open', scrolled && navOpen);
+      navPeek.hidden = !scrolled;
+      navPeek.setAttribute('aria-expanded', String(scrolled && navOpen));
+      navPeek.setAttribute('aria-label', scrolled && navOpen ? 'Recoger navegación' : 'Mostrar navegación');
+      navPeek.querySelector('span').textContent = scrolled && navOpen ? '⌃' : '⌄';
+      siteHeader.inert = scrolled && !navOpen;
+    };
+    navPeek.addEventListener('click', () => {
+      navOpen = !navOpen;
+      syncNavigation();
+      if (navOpen) siteHeader.querySelector('.main-nav a')?.focus({ preventScroll: true });
+    });
+    siteHeader.querySelectorAll('.main-nav a').forEach((link) => link.addEventListener('click', () => {
+      if (window.scrollY > collapseAfter) { navOpen = false; syncNavigation(); }
+    }));
+    window.addEventListener('scroll', syncNavigation, { passive: true });
+    syncNavigation();
+  }
+
   document.querySelectorAll('img[data-fallback-src]').forEach((image) => {
     image.addEventListener('error', () => {
       if (!image.dataset.fallbackUsed) {
