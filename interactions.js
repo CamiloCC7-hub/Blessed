@@ -149,12 +149,13 @@
   });
 
   const dishCards = Array.from(document.querySelectorAll('[data-dish-card]'));
+  const dishName = (card) => card.dataset.dishName || card.querySelector('h3')?.innerText.replace(/\s+/g, ' ').trim() || card.querySelector('.dish-image-name')?.textContent.replace(/\s+/g, ' ').trim() || 'Plato Cecilia';
   const dishFeedback = document.querySelector('#dish-feedback');
   const pointerTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   dishCards.forEach((card) => {
     const button = card.querySelector('[data-dish-toggle]');
     const label = card.querySelector('.dish-select-label');
-    const title = card.querySelector('h3').innerText.replace(/\s+/g, ' ').trim();
+    const title = dishName(card);
     button.addEventListener('click', () => {
       const selected = button.getAttribute('aria-pressed') !== 'true';
       button.setAttribute('aria-pressed', String(selected));
@@ -164,7 +165,7 @@
       button.classList.remove('is-tapped');
       requestAnimationFrame(() => button.classList.add('is-tapped'));
       sparkle(button);
-      const saved = dishCards.filter((item) => item.querySelector('[data-dish-toggle]').getAttribute('aria-pressed') === 'true').map((item) => item.querySelector('h3').innerText.replace(/\s+/g, ' ').trim());
+      const saved = dishCards.filter((item) => item.querySelector('[data-dish-toggle]').getAttribute('aria-pressed') === 'true').map((item) => dishName(item));
       dishFeedback.textContent = saved.length ? 'Tu lista de antojos: ' + saved.join(' y ') + '. Solo queda visualmente guardada; no genera un pedido.' : 'Toca “Guardar mi antojo” y arma tu pequeña lista. Es solo una interacción visual; no genera un pedido.';
     });
 
