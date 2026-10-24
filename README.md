@@ -10,7 +10,8 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 
 - HTML5 semántico, navegación accesible y metadatos para móviles y buscadores.
 - Maquetación con CSS Grid y Flexbox, enfoque mobile first y tres rangos de pantalla.
-- Formulario de reserva con validación nativa. Es una demostración: no guarda ni transmite datos y no confirma reservas.
+- Panel de curiosidades interactivo, destellos al activar controles y microanimaciones respetuosas con movimiento reducido.
+- Formulario de reserva con validación nativa y mensaje de demostración; no guarda ni transmite datos y no confirma reservas.
 - Fotografías servidas desde Unsplash y tipografías de Google Fonts; se requiere conexión a internet para esos recursos.
 
 ## Antes de publicar
