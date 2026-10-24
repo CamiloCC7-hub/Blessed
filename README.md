@@ -21,16 +21,6 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 - Reserva y carta completa conectan con Menupp. También se incluyen accesos al formulario de opinión, ubicaciones y redes sociales, más un enlace telefónico directo.
 - Las fotografías y tipografías se sirven desde fuentes externas; se requiere internet para cargarlas.
 
-## Antes de publicar
-
-Verifica con el restaurante sus datos, ubicación, carta, precios, disponibilidad y autorización de imágenes. La URL pública depende del repositorio elegido en GitHub.
-
-## Publicar en GitHub
-
-1. Crea un repositorio público vacío en GitHub.
-2. Conecta el remoto con la URL que GitHub te proporcione.
-3. Sube la rama principal con sus commits.
-4. Para publicar el sitio, activa GitHub Pages para la rama principal y la carpeta raíz.
 
 ## Reto de historia
 
