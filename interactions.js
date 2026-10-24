@@ -1,4 +1,16 @@
 (() => {
+  document.querySelectorAll('img[data-fallback-src]').forEach((image) => {
+    image.addEventListener('error', () => {
+      if (!image.dataset.fallbackUsed) {
+        image.dataset.fallbackUsed = 'true';
+        image.src = image.dataset.fallbackSrc;
+      } else {
+        image.hidden = true;
+        image.closest('.dish-visual')?.classList.add('image-unavailable');
+      }
+    });
+  });
+
   const facts = {
     smell: { label: 'CIENCIA DEL SABOR', text: 'Gran parte de lo que reconocemos como sabor también depende del olfato. Por eso un resfriado puede hacer que la comida parezca más plana.', source: 'https://annex.exploratorium.edu/wsw/progress_snacks/your_sense_of_taste/' },
     herbs: { label: 'SECRETO AROMÁTICO', text: 'Muchas hierbas y especias deben su aroma a compuestos volátiles. El calor puede hacer que parte de esos aromas se disipe durante la cocción.', source: 'https://annex.exploratorium.edu/cooking/seasoning/facts.html' },

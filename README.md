@@ -11,7 +11,7 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 - HTML5 semántico, navegación accesible y metadatos para móviles y buscadores.
 - Maquetación con CSS Grid y Flexbox, enfoque mobile first y tres rangos de pantalla.
 - Acabado minimalista con superficies de vidrio esmerilado, usando blur y transparencias sobre fondos de alto contraste.
-- La carta muestra solo las dos entradas solicitadas: ceviche crujiente de chicharrones ($30.000 COP) y ceviche especial de chorizo ($28.000 COP), cada una con descripción, imagen de referencia atribuida, control de zoom y lista visual de antojos.
+- La carta muestra solo las dos entradas solicitadas: ceviche crujiente de chicharrones ($30.000 COP) y ceviche especial de chorizo ($28.000 COP), cada una con descripción, imagen de referencia atribuida, control de zoom y lista visual de antojos. Las fotos tienen una fuente alternativa si el servidor de imágenes no responde.
 - Sección narrativa sobre Cecilia, el origen del nombre, el recorrido familiar y el significado visual de la paleta.
 - Panel interactivo con curiosidades sobre sabor, el origen del nombre Cecilia, la historia de la familia, el equipo, los cumpleaños y la paleta cromática.
 - Destellos discretos, animaciones al entrar en pantalla, tarjetas con detalles al pasar el cursor y una línea de progreso de lectura; se respeta la preferencia de movimiento reducido.
