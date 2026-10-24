@@ -10,7 +10,9 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 
 - HTML5 semántico, navegación accesible y metadatos para móviles y buscadores.
 - Maquetación con CSS Grid y Flexbox, enfoque mobile first y tres rangos de pantalla.
-- Panel interactivo con diez curiosidades: ciencia del sabor y relatos de Cecilia sobre el equipo, cumpleaños, postre de regalo y serenata.
+- Acabado minimalista con superficies de vidrio esmerilado, usando blur y transparencias sobre fondos de alto contraste.
+- Sección narrativa sobre Cecilia, el origen del nombre, el recorrido familiar y el significado visual de la paleta.
+- Panel interactivo con curiosidades sobre sabor, el origen del nombre Cecilia, la historia de la familia, el equipo, los cumpleaños y la paleta cromática.
 - Destellos discretos, animaciones al entrar en pantalla, tarjetas con detalles al pasar el cursor y una línea de progreso de lectura; se respeta la preferencia de movimiento reducido.
 - Formulario de reserva con validación nativa y mensaje de demostración; no guarda ni transmite datos y no confirma reservas.
 - Fotografías servidas desde Unsplash y tipografías de Google Fonts; se requiere conexión a internet para esos recursos.

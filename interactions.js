@@ -9,7 +9,13 @@
     familia: { label: 'UNA HISTORIA DE SAHAGÚN', text: 'El equipo Cecilia se formó visitando restaurantes del municipio y buscando talento local. A quienes invitaron, les ofrecieron un mejor sueldo y una nueva oportunidad; hoy son parte de la familia Cecilia.', source: '' },
     birthday: { label: 'SÍ, ES UNA SORPRESA REAL', text: 'Si celebras tu cumpleaños en Cecilia, te regalan un postre y una serenata. Sin costo: tú solo tienes que decidir si cantas el coro.', source: '' },
     quality: { label: 'LA PROMESA DE LA CASA', text: 'La apuesta de Cecilia es que la calidad de la comida y el cariño de la atención hagan que la cuenta se sienta pequeña junto a la experiencia. Y que quieras volver.', source: '' },
-    celebrate: { label: 'PLAN REDONDO', text: 'Cumpleaños en Cecilia: postre de regalo, serenata y un motivo adicional para soplar las velas con ganas.', source: '' }
+    celebrate: { label: 'PLAN REDONDO', text: 'Cumpleaños en Cecilia: postre de regalo, serenata y un motivo adicional para soplar las velas con ganas.', source: '' },
+    cecilia: { label: 'EL NOMBRE DE LA CASA', text: 'Cecilia es la madre del dueño. El restaurante lleva su nombre para honrar a la mujer cuyo esfuerzo abrió camino para toda su familia.', source: '' },
+    roots: { label: 'CINCO HIJOS, MUCHOS SUEÑOS', text: 'Cecilia vendía empanadas, fritos y arepas para mantener a sus cinco hijos y ayudarles a estudiar. Su perseverancia está en el origen de esta historia.', source: '' },
+    journey: { label: 'UNA HISTORIA QUE CRECIÓ', text: 'La familia comenzó con un pequeño restaurante en El Chocó. Después llegaron sucursales en Montería y Chinú, y la historia siguió hasta Sahagún, Córdoba.', source: '' },
+    wine: { label: 'EL COLOR VINO', text: 'En esta propuesta, el vino da continuidad a la identidad de Cecilia y aporta una sensación de calidez alrededor de la mesa.', source: '' },
+    gold: { label: 'EL DETALLE DORADO', text: 'El dorado aparece como un acento de celebración: un pequeño destello para enmarcar los momentos especiales.', source: '' },
+    ivory: { label: 'UN RESPIRO MARFIL', text: 'El marfil abre espacio y deja descansar la vista entre los tonos profundos y los detalles cálidos.', source: '' }
   };
   const panel = document.querySelector('#dato-curioso');
   if (!panel) return;
