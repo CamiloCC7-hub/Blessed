@@ -98,6 +98,27 @@
   });
   close.addEventListener('click', closeFact);
 
+
+  // Solicitud sin backend: se prepara un mensaje editable que la persona envía desde WhatsApp.
+  const inquiryForm = document.querySelector('#inquiry-form');
+  if (inquiryForm) {
+    const dateInput = inquiryForm.querySelector('input[name="fecha"]');
+    const dateValue = (date) => [date.getFullYear(), String(date.getMonth()+1).padStart(2,'0'), String(date.getDate()).padStart(2,'0')].join('-');
+    const today = new Date(); const latestDate = new Date(today); latestDate.setFullYear(latestDate.getFullYear()+1);
+    dateInput.min = dateValue(today); dateInput.max = dateValue(latestDate);
+    inquiryForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(inquiryForm);
+      const message = ['Hola, Cecilia. Quisiera consultar una reserva:', 'Nombre: ' + data.get('nombre'), 'Correo: ' + data.get('email'), 'Teléfono: ' + data.get('telefono'), 'Fecha: ' + data.get('fecha'), 'Personas: ' + data.get('personas'), data.get('mensaje') ? 'Ocasión o detalle: ' + data.get('mensaje') : ''].filter(Boolean).join('\n');
+      const whatsappUrl = 'https://wa.me/573017222769?text=' + encodeURIComponent(message);
+      const opened = window.open(whatsappUrl, '_blank');
+      if (opened) opened.opener = null;
+      const status = document.querySelector('#inquiry-status');
+      status.textContent = opened ? 'Listo: revisa los datos en WhatsApp y envía el mensaje para coordinar. La reserva aún no está confirmada.' : 'El navegador bloqueó la ventana. Permite abrir WhatsApp o escríbenos al 301 722 2769.';
+      if (opened) sparkle(inquiryForm.querySelector('button[type="submit"]'));
+    });
+  }
+
   const menuToggle = document.querySelector('#menu-toggle');
   const moreMenu = document.querySelector('#more-menu');
   if (menuToggle && moreMenu) {

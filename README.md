@@ -1,6 +1,6 @@
 # Cecilia Restaurante
 
-Sitio estático para presentar la historia, la experiencia y las entradas de Cecilia Restaurante con una interfaz responsive, accesible y de estética minimalista con glassmorfismo.
+Prototipo front end de Cecilia Restaurante, con estructura semántica, diseño responsive, carta interactiva y una estética de vidrio translúcido.
 
 ## Abrir
 
@@ -37,3 +37,20 @@ Verifica con el restaurante sus datos, ubicación, carta, precios, disponibilida
 Al final de la página hay una evaluación opcional de tres preguntas. La persona puede rechazarla y seguir navegando; si acepta, el diálogo modal mantiene la página en pausa hasta mostrar el resultado. El premio visual es de 5% por un acierto, 10% por dos y 12% por tres. Se guarda una participación en la sesión de esa pestaña para evitar repeticiones casuales.
 
 Esta es una demostración de interfaz: el almacenamiento del navegador se puede modificar y no protege contra trampas. El resultado no crea un cupón real; el descuento debe validarlo el equipo Cecilia. Para controlar intentos y redimir beneficios de forma segura se necesita un servicio del restaurante en el servidor.
+
+## Criterios de la primera entrega
+
+- Documento HTML en español con metadatos de codificación, viewport, descripción y título; hojas CSS y JavaScript externas.
+- Estructura de contenido con encabezado, navegación, contenido principal, secciones, artículos, dirección y pie de página; fotografías con texto alternativo y carga diferida.
+- Diseño responsive con CSS Grid y Flexbox, media queries para móvil, tablet y escritorio, y preferencia de movimiento reducido.
+- Tipografías de Google Fonts e iconos de marca de Font Awesome se cargan desde CDN; el emblema local se entrega como WebP.
+- Formulario de consulta con validación HTML nativa para nombre, correo, teléfono, fecha y número de personas. Al enviarlo, prepara un mensaje de WhatsApp para el restaurante; el usuario lo revisa y lo envía. No registra ni confirma reservas automáticamente.
+- Evaluación opcional de tres preguntas con premios visuales escalonados. La puntuación y el bloqueo de repetición solo se guardan en la sesión del navegador: no sirven para validar un cupón real ni impedir manipulación.
+
+## Publicación
+
+El directorio del proyecto contiene index.html en la raíz, listo para GitHub Pages. Configura Pages en la rama principal y la carpeta raíz después de subir el repositorio.
+
+## Alcance académico
+
+El documento de propuesta plantea el diseño y prototipado en Penpot sin programación ni despliegue. Este repositorio implementa la interfaz en HTML, CSS y JavaScript para cubrir la rúbrica adicional de primera entrega compartida en la conversación. No incluye servidor ni base de datos: las reservas se gestionan en Menupp y las consultas del formulario se envían manualmente desde WhatsApp. Si el curso solicita también el prototipo en Penpot, este código no lo reemplaza.
