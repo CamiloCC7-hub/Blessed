@@ -13,7 +13,7 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 - Estética premium de vidrio esmerilado, con transparencias cálidas, acentos dorados y el emblema original de Cecilia optimizado para web.
 - Navegación de cristal fija al desplazarse, microbrillos en los botones y rótulos de sección sobre fondos dorados de alto contraste.
 - Textos de bienvenida y atención con un tono cercano y juguetón.
-- La carta presenta únicamente las dos entradas solicitadas: ceviche crujiente de chicharrones ($30.000 COP) y ceviche especial de chorizo ($28.000 COP), con descripción, imagen de referencia atribuida, zoom y lista visual de antojos.
+- La carta muestra inicialmente las dos entradas solicitadas y un botón despliega 29 opciones adicionales, agrupadas en platos principales, menú infantil, postres y bebidas. Cada opción incluye precio, descripción e imagen ilustrativa, con zoom y lista visual de antojos.
 - Relato de Cecilia, el origen del nombre, el recorrido familiar y el equipo.
 - Curiosidades interactivas, pequeños destellos y animaciones al desplazarse; se respeta la preferencia de movimiento reducido.
 - Reserva y carta completa conectan con Menupp. También se incluyen accesos al formulario de opinión, ubicaciones y redes sociales, más un enlace telefónico directo.

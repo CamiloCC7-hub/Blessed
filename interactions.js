@@ -92,6 +92,20 @@
     button.addEventListener('click', () => openFact(button));
   });
   close.addEventListener('click', closeFact);
+
+  const menuToggle = document.querySelector('#menu-toggle');
+  const moreMenu = document.querySelector('#more-menu');
+  if (menuToggle && moreMenu) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') !== 'true';
+      menuToggle.setAttribute('aria-expanded', String(expanded));
+      moreMenu.hidden = !expanded;
+      moreMenu.classList.toggle('is-open', expanded);
+      menuToggle.querySelector('.menu-toggle-label').textContent = expanded ? 'Ocultar los demás platos' : '¿Quieres ver los demás platos?';
+      menuToggle.querySelector('.menu-toggle-prompt').innerHTML = expanded ? 'Ya puedes curiosear la carta <span class="menu-toggle-icon" aria-hidden="true">−</span>' : '¿Quieres saber de qué te estás perdiendo? <span class="menu-toggle-icon" aria-hidden="true">＋</span>';
+      sparkle(menuToggle);
+    });
+  }
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeFact(); });
   document.addEventListener('click', (event) => {
     if (!panel.hidden && !panel.contains(event.target) && !event.target.closest('[data-fact]')) closeFact();
