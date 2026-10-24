@@ -10,13 +10,14 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 
 - HTML5 semántico, navegación accesible y metadatos para móviles y buscadores.
 - Maquetación con CSS Grid y Flexbox, enfoque mobile first y tres rangos de pantalla.
-- Panel de curiosidades interactivo, destellos al activar controles y microanimaciones respetuosas con movimiento reducido.
+- Panel interactivo con diez curiosidades: ciencia del sabor y relatos de Cecilia sobre el equipo, cumpleaños, postre de regalo y serenata.
+- Destellos discretos, animaciones al entrar en pantalla, tarjetas con detalles al pasar el cursor y una línea de progreso de lectura; se respeta la preferencia de movimiento reducido.
 - Formulario de reserva con validación nativa y mensaje de demostración; no guarda ni transmite datos y no confirma reservas.
 - Fotografías servidas desde Unsplash y tipografías de Google Fonts; se requiere conexión a internet para esos recursos.
 
 ## Antes de publicar
 
-Verifica con el restaurante sus datos de contacto, horario, ubicación exacta, carta, precios, disponibilidad y autorización de imágenes. Sustituye el contenido de muestra antes de habilitar solicitudes reales.
+Verifica con el restaurante sus datos de contacto, horario, ubicación exacta, carta, precios, disponibilidad y autorización de imágenes. Confirma también los detalles de la cortesía de cumpleaños antes de habilitar solicitudes reales.
 
 ## Publicar en GitHub
 
