@@ -185,6 +185,90 @@
     }
   });
 
+
+  // Evaluación opcional: el diálogo modal pausa la navegación solo tras aceptar.
+  const quizDialog = document.querySelector('#cecilia-quiz');
+  const startQuiz = document.querySelector('#start-quiz');
+  const skipQuiz = document.querySelector('#skip-quiz');
+  const quizForm = document.querySelector('#quiz-form');
+  const quizQuestion = document.querySelector('#quiz-question');
+  const quizNext = document.querySelector('#quiz-next');
+  const quizError = document.querySelector('#quiz-error');
+  const quizResult = document.querySelector('#quiz-result');
+  const quizProgress = document.querySelector('#quiz-progress');
+  const quizCounter = document.querySelector('#quiz-counter');
+  const evaluationNote = document.querySelector('#evaluation-note');
+  const quizAttemptKey = 'cecilia-quiz-complete-v1';
+  const questions = [
+    { prompt: '¿Por qué el restaurante lleva el nombre Cecilia?', answers: [{id:'mother',text:'En honor a la madre del dueño, cuyo esfuerzo inspira a la familia.'},{id:'dish',text:'Por el nombre de la primera receta de la carta.'},{id:'town',text:'Por una antigua forma de llamar al municipio.'}], correct:'mother' },
+    { prompt: '¿Dónde comenzó el camino de restaurantes de la familia?', answers: [{id:'monteria',text:'En Montería, antes de abrir en otros municipios.'},{id:'choco',text:'En El Chocó, con un pequeño restaurante familiar.'},{id:'sahagun',text:'En Sahagún, como primera sede.'}], correct:'choco' },
+    { prompt: 'Además de la comida, ¿qué pone Cecilia en el centro de la experiencia?', answers: [{id:'decor',text:'La decoración de cada mesa.'},{id:'speed',text:'Servir todo en tiempo récord.'},{id:'service',text:'La calidad de la atención y hacerte sentir especial.'}], correct:'service' }
+  ];
+  let quizIndex = 0;
+  let quizScore = 0;
+  let quizLocked = false;
+
+  function renderQuizQuestion() {
+    const question = questions[quizIndex];
+    const choices = [...question.answers];
+    for (let i = choices.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [choices[i], choices[j]] = [choices[j], choices[i]]; }
+    quizCounter.textContent = 'PREGUNTA ' + (quizIndex + 1) + ' DE ' + questions.length;
+    quizProgress.value = quizIndex + 1;
+    quizNext.disabled = true;
+    quizNext.innerHTML = (quizIndex === questions.length - 1 ? 'Ver mi resultado' : 'Siguiente') + ' <span aria-hidden="true">→</span>';
+    quizError.hidden = true;
+    quizQuestion.classList.remove('question-arrive');
+    quizQuestion.innerHTML = '<fieldset class="quiz-fieldset"><legend>' + question.prompt + '</legend><div class="quiz-options">' + choices.map((choice, i) => '<label class="quiz-option" for="quiz-answer-' + i + '"><input id="quiz-answer-' + i + '" type="radio" name="quiz-answer" value="' + choice.id + '" required><span>' + choice.text + '</span><i aria-hidden="true">✦</i></label>').join('') + '</div></fieldset>';
+    requestAnimationFrame(() => quizQuestion.classList.add('question-arrive'));
+    quizQuestion.querySelectorAll('input[name="quiz-answer"]').forEach((input) => input.addEventListener('change', () => { quizNext.disabled = false; quizQuestion.querySelectorAll('.quiz-option').forEach((option) => option.classList.toggle('is-chosen', option.contains(input) && input.checked)); sparkle(input.closest('.quiz-option')); }));
+  }
+
+  function finishQuiz() {
+    const percent = quizScore === 3 ? 12 : quizScore === 2 ? 10 : quizScore === 1 ? 5 : 0;
+    quizForm.hidden = true;
+    quizProgress.hidden = true;
+    quizCounter.textContent = 'RETO COMPLETADO · ' + quizScore + ' DE 3';
+    quizResult.hidden = false;
+    quizResult.innerHTML = '<span class="quiz-result-spark" aria-hidden="true">✦</span><p class="eyebrow">' + (percent ? '¡QUÉ BIEN NOS CONOCES!' : 'GRACIAS POR JUGAR') + '</p><h3>' + (percent ? '¡Felicidades! Has obtenido' : 'Esta vez no hubo aciertos') + '</h3>' + (percent ? '<p class="quiz-reward">' + percent + '<span>%</span></p><p class="quiz-result-copy">de descuento, por ' + quizScore + ' respuesta' + (quizScore === 1 ? '' : 's') + ' correcta' + (quizScore === 1 ? '' : 's') + '.</p>' : '<p class="quiz-result-copy">La historia ya es tuya; sigue disfrutando la visita.</p>') + '<p class="quiz-validation">Muestra este resultado al equipo Cecilia para validar el beneficio. La página no emite un cupón.</p><button class="button button-gold quiz-return" id="quiz-return" type="button">Volver a la página <span aria-hidden="true">↗</span></button>';
+    sessionStorage.setItem(quizAttemptKey, JSON.stringify({ score: quizScore, percent, completedAt: new Date().toISOString() }));
+    sparkle(quizResult.querySelector('.quiz-return'));
+    quizResult.querySelector('#quiz-return').addEventListener('click', () => { quizLocked = false; document.body.classList.remove('quiz-locked'); quizDialog.close(); startQuiz.focus({preventScroll:true}); });
+  }
+
+  if (quizDialog && startQuiz && quizForm) {
+    const previousAttempt = sessionStorage.getItem(quizAttemptKey);
+    if (previousAttempt) { startQuiz.disabled = true; startQuiz.textContent = 'Ya participaste en esta visita'; evaluationNote.textContent = 'Esta evaluación ya se respondió en esta pestaña. Para validar un descuento, consulta al equipo Cecilia.'; }
+    startQuiz.addEventListener('click', () => {
+      if (sessionStorage.getItem(quizAttemptKey)) { evaluationNote.textContent = 'Esta evaluación ya se respondió en esta pestaña; el resultado debe validarse con el equipo Cecilia.'; return; }
+      quizIndex = 0; quizScore = 0; quizLocked = true;
+      quizForm.hidden = false; quizResult.hidden = true; quizProgress.hidden = false; quizNext.disabled = true;
+      quizDialog.showModal(); document.body.classList.add('quiz-locked'); renderQuizQuestion(); sparkle(startQuiz);
+    });
+    skipQuiz.addEventListener('click', () => { evaluationNote.textContent = 'Perfecto, sigue mirando a tu ritmo. El reto seguirá aquí si cambias de opinión.'; sparkle(skipQuiz); });
+    quizForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const chosen = quizForm.querySelector('input[name="quiz-answer"]:checked');
+      if (!chosen) { quizError.hidden = false; return; }
+      if (chosen.value === questions[quizIndex].correct) quizScore++;
+      quizIndex++;
+      if (quizIndex < questions.length) renderQuizQuestion(); else finishQuiz();
+    });
+    quizDialog.addEventListener('cancel', (event) => { if (quizLocked) event.preventDefault(); });
+    quizDialog.addEventListener('close', () => { if (quizLocked) { quizLocked = false; document.body.classList.remove('quiz-locked'); } });
+  }
+
+  // Un destello corto confirma los toques sin añadir controles innecesarios.
+  document.addEventListener('pointerdown', (event) => {
+    if (reducedMotion) return;
+    const control = event.target.closest('.button, .curiosity-trigger, .dish-select, .menu-reveal-button, .palette-chip, .social-icon, .nav-cta, .image-peek, .location-link, .quiz-option, .quiz-decline, .lightbox-close');
+    if (!control || control.matches(':disabled') || control.closest('.quiz-option')) return;
+    const rect = control.getBoundingClientRect();
+    control.style.setProperty('--ripple-x', (event.clientX - rect.left) + 'px');
+    control.style.setProperty('--ripple-y', (event.clientY - rect.top) + 'px');
+    const ripple = document.createElement('span'); ripple.className = 'interaction-ripple'; ripple.setAttribute('aria-hidden', 'true');
+    control.append(ripple); ripple.addEventListener('animationend', () => ripple.remove(), {once:true});
+  }, {passive:true});
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.intro, .menu-section, .quote-band, .spaces, .team-story, .birthday, .little-surprise, .reservation, .contact');
   if (!reducedMotion && 'IntersectionObserver' in window) {

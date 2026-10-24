@@ -31,3 +31,9 @@ Verifica con el restaurante sus datos, ubicación, carta, precios, disponibilida
 2. Conecta el remoto con la URL que GitHub te proporcione.
 3. Sube la rama principal con sus commits.
 4. Para publicar el sitio, activa GitHub Pages para la rama principal y la carpeta raíz.
+
+## Reto de historia
+
+Al final de la página hay una evaluación opcional de tres preguntas. La persona puede rechazarla y seguir navegando; si acepta, el diálogo modal mantiene la página en pausa hasta mostrar el resultado. El premio visual es de 5% por un acierto, 10% por dos y 12% por tres. Se guarda una participación en la sesión de esa pestaña para evitar repeticiones casuales.
+
+Esta es una demostración de interfaz: el almacenamiento del navegador se puede modificar y no protege contra trampas. El resultado no crea un cupón real; el descuento debe validarlo el equipo Cecilia. Para controlar intentos y redimir beneficios de forma segura se necesita un servicio del restaurante en el servidor.
