@@ -130,3 +130,16 @@
 
 /* Font Awesome brand icons via CDN */
 .social-icon .fa-brands{display:inline-block;color:currentColor;font-size:1.3rem;line-height:1;transition:transform .25s,color .25s}.social-icon:hover .fa-brands{transform:scale(1.14) rotate(-4deg);color:#d9b779}
+
+
+/* La navegación se recoge al avanzar por la página y vuelve al tocar la flecha. */
+.site-header{transition:transform .42s cubic-bezier(.2,.75,.25,1),opacity .28s ease,background .28s ease;will-change:transform}
+body.nav-scrolled:not(.nav-open) .site-header{transform:translateY(calc(-100% - 1rem));opacity:0;pointer-events:none}
+body.nav-open .site-header{transform:translateY(0);opacity:1;pointer-events:auto;z-index:100;background:rgba(248,244,236,.88);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);box-shadow:0 18px 55px rgba(43,24,29,.16)}
+.nav-peek{position:fixed;z-index:110;top:.8rem;right:1rem;width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.78);border-radius:50%;background:rgba(249,245,238,.72);color:#542936;font:600 1.6rem/1 var(--sans);box-shadow:0 8px 30px rgba(45,25,31,.18),inset 0 1px rgba(255,255,255,.9);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);cursor:pointer;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
+.nav-peek:hover{transform:translateY(2px) scale(1.06);background:rgba(255,250,242,.94);box-shadow:0 12px 34px rgba(45,25,31,.24),inset 0 1px rgba(255,255,255,.95)}
+.nav-peek:focus-visible{outline:3px solid #b88946;outline-offset:3px}
+.nav-peek[hidden]{display:none}
+body.nav-open .site-header{padding-right:5rem}
+@media(max-width:600px){body.nav-open .site-header{padding-right:.8rem;padding-top:.6rem}.nav-peek{top:.65rem;right:.7rem;width:42px;height:42px}body.nav-open .brand{padding-right:3rem}}
+@media(prefers-reduced-motion:reduce){.site-header,.nav-peek{transition:none!important}}
