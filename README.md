@@ -10,7 +10,9 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 
 - Estructura HTML5 semántica, navegación accesible y metadatos para móviles y buscadores.
 - Maquetación con CSS Grid y Flexbox, enfoque mobile first y tres rangos de pantalla.
-- Estética de vidrio esmerilado, con transparencias y contrastes cálidos.
+- Estética premium de vidrio esmerilado, con transparencias cálidas, acentos dorados y el emblema original de Cecilia optimizado para web.
+- Navegación de cristal fija al desplazarse, microbrillos en los botones y rótulos de sección sobre fondos dorados de alto contraste.
+- Textos de bienvenida y atención con un tono cercano y juguetón.
 - La carta presenta únicamente las dos entradas solicitadas: ceviche crujiente de chicharrones ($30.000 COP) y ceviche especial de chorizo ($28.000 COP), con descripción, imagen de referencia atribuida, zoom y lista visual de antojos.
 - Relato de Cecilia, el origen del nombre, el recorrido familiar y el equipo.
 - Curiosidades interactivas, pequeños destellos y animaciones al desplazarse; se respeta la preferencia de movimiento reducido.
