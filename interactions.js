@@ -97,17 +97,6 @@
     if (!panel.hidden && !panel.contains(event.target) && !event.target.closest('[data-fact]')) closeFact();
   });
 
-  const reservationForm = document.querySelector('.reservation-form');
-  const feedback = document.querySelector('#reservation-feedback');
-  if (reservationForm && feedback) {
-    reservationForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      feedback.textContent = '¡Qué buen plan! Esta maqueta no envía solicitudes reales. Contacta al restaurante para consultar y confirmar tu reserva.';
-      feedback.hidden = false;
-      sparkle(reservationForm.querySelector('button[type=submit]'));
-    });
-  }
-
   const dishCards = Array.from(document.querySelectorAll('[data-dish-card]'));
   const dishFeedback = document.querySelector('#dish-feedback');
   const pointerTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;

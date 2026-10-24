@@ -1,6 +1,6 @@
 # Cecilia Restaurante
 
-Primera entrega de interfaz web semántica y responsive para Cecilia Restaurante, basada en el concepto visual descrito en el documento del proyecto: elegancia cálida, acentos vino y dorado, gastronomía y espacios para compartir.
+Sitio estático para presentar la historia, la experiencia y las entradas de Cecilia Restaurante con una interfaz responsive, accesible y de estética minimalista con glassmorfismo.
 
 ## Abrir
 
@@ -8,25 +8,22 @@ Abre index.html en un navegador. No requiere instalación ni compilación.
 
 ## Contenido
 
-- HTML5 semántico, navegación accesible y metadatos para móviles y buscadores.
+- Estructura HTML5 semántica, navegación accesible y metadatos para móviles y buscadores.
 - Maquetación con CSS Grid y Flexbox, enfoque mobile first y tres rangos de pantalla.
-- Acabado minimalista con superficies de vidrio esmerilado, usando blur y transparencias sobre fondos de alto contraste.
-- La carta muestra solo las dos entradas solicitadas: ceviche crujiente de chicharrones ($30.000 COP) y ceviche especial de chorizo ($28.000 COP), cada una con descripción, imagen de referencia atribuida, control de zoom y lista visual de antojos. Las fotos tienen una fuente alternativa si el servidor de imágenes no responde.
-- Sección narrativa sobre Cecilia, el origen del nombre, el recorrido familiar y el significado visual de la paleta.
-- Panel interactivo con curiosidades sobre sabor, el origen del nombre Cecilia, la historia de la familia, el equipo, los cumpleaños y la paleta cromática.
-- Destellos discretos, animaciones al entrar en pantalla, tarjetas con detalles al pasar el cursor y una línea de progreso de lectura; se respeta la preferencia de movimiento reducido.
-- Formulario de reserva con validación nativa y mensaje de demostración; no guarda ni transmite datos y no confirma reservas.
-- Fotografías ilustrativas servidas desde sus fuentes externas con crédito visible, y tipografías de Google Fonts; se requiere conexión a internet para esos recursos.
+- Estética de vidrio esmerilado, con transparencias y contrastes cálidos.
+- La carta presenta únicamente las dos entradas solicitadas: ceviche crujiente de chicharrones ($30.000 COP) y ceviche especial de chorizo ($28.000 COP), con descripción, imagen de referencia atribuida, zoom y lista visual de antojos.
+- Relato de Cecilia, el origen del nombre, el recorrido familiar y el equipo.
+- Curiosidades interactivas, pequeños destellos y animaciones al desplazarse; se respeta la preferencia de movimiento reducido.
+- Reserva y carta completa conectan con Menupp. También se incluyen accesos al formulario de opinión, ubicaciones y redes sociales, más un enlace telefónico directo.
+- Las fotografías y tipografías se sirven desde fuentes externas; se requiere internet para cargarlas.
 
 ## Antes de publicar
 
-Verifica con el restaurante sus datos de contacto, horario, ubicación exacta, carta, precios, disponibilidad y autorización de imágenes. Confirma también los detalles de la cortesía de cumpleaños antes de habilitar solicitudes reales.
+Verifica con el restaurante sus datos, ubicación, carta, precios, disponibilidad y autorización de imágenes. La URL pública depende del repositorio elegido en GitHub.
 
 ## Publicar en GitHub
 
 1. Crea un repositorio público vacío en GitHub.
-2. En esta carpeta, conecta el remoto con la URL que GitHub te proporcione.
+2. Conecta el remoto con la URL que GitHub te proporcione.
 3. Sube la rama principal con sus commits.
-4. Si deseas una URL de sitio, activa GitHub Pages para la rama principal y la carpeta raíz.
-
-Los commits de esta entrega describen la estructura semántica y los estilos adaptativos. La URL pública depende de la cuenta/repositorio elegido.
+4. Para publicar el sitio, activa GitHub Pages para la rama principal y la carpeta raíz.
