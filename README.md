@@ -2,15 +2,11 @@
 
 Prototipo front end de Cecilia Restaurante, con estructura semántica, diseño responsive, carta interactiva y una estética de vidrio translúcido.
 
-## Abrir
-
-Abre index.html en un navegador. No requiere instalación ni compilación.
-
 ## Contenido
 
 - Estructura HTML5 semántica, navegación accesible y metadatos para móviles y buscadores.
 - Maquetación con CSS Grid y Flexbox, enfoque mobile first y tres rangos de pantalla.
-- Estética premium de vidrio esmerilado, con transparencias cálidas, acentos dorados y el emblema original de Cecilia optimizado para web.
+- Estética premium de vidrio esmerilado, con transparencias cálidas, acentos dorados y el emblema original del restaurante Cecilia optimizado para web.
 - Navegación de cristal fija al desplazarse, microbrillos en los botones y rótulos de sección sobre fondos dorados de alto contraste.
 - Textos de bienvenida y atención con un tono cercano y juguetón.
 - La carta muestra inicialmente las dos entradas solicitadas y un botón despliega 29 opciones adicionales, agrupadas en platos principales, menú infantil, postres y bebidas. Cada opción incluye precio, descripción e imagen ilustrativa, con zoom y lista visual de antojos.
@@ -37,10 +33,6 @@ Esta es una demostración de interfaz: el almacenamiento del navegador se puede 
 - Formulario de consulta con validación HTML nativa para nombre, correo, teléfono, fecha y número de personas. Al enviarlo, prepara un mensaje de WhatsApp para el restaurante; el usuario lo revisa y lo envía. No registra ni confirma reservas automáticamente.
 - Evaluación opcional de tres preguntas con premios visuales escalonados. La puntuación y el bloqueo de repetición solo se guardan en la sesión del navegador: no sirven para validar un cupón real ni impedir manipulación.
 
-## Publicación
-
-El directorio del proyecto contiene index.html en la raíz, listo para GitHub Pages. Configura Pages en la rama principal y la carpeta raíz después de subir el repositorio.
-
 ## Alcance académico
 
-El documento de propuesta plantea el diseño y prototipado en Penpot sin programación ni despliegue. Este repositorio implementa la interfaz en HTML, CSS y JavaScript para cubrir la rúbrica adicional de primera entrega compartida en la conversación. No incluye servidor ni base de datos: las reservas se gestionan en Menupp y las consultas del formulario se envían manualmente desde WhatsApp. Si el curso solicita también el prototipo en Penpot, este código no lo reemplaza.
+El documento de propuesta plantea el diseño y prototipado en Penpot sin programación ni despliegue. Este repositorio implementa la interfaz en HTML, CSS y JavaScript para cubrir la rúbrica adicional de primera entrega compartida en la conversación. No incluye servidor ni base de datos: las reservas se gestionan en Menupp y las consultas del formulario se envían manualmente desde WhatsApp.
