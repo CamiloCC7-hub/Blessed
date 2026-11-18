@@ -131,7 +131,6 @@
 /* Font Awesome brand icons via CDN */
 .social-icon .fa-brands{display:inline-block;color:currentColor;font-size:1.3rem;line-height:1;transition:transform .25s,color .25s}.social-icon:hover .fa-brands{transform:scale(1.14) rotate(-4deg);color:#d9b779}
 
-
 /* La navegación se recoge al avanzar por la página y vuelve al tocar la flecha. */
 .site-header{transition:transform .42s cubic-bezier(.2,.75,.25,1),opacity .28s ease,background .28s ease;will-change:transform}
 body.nav-scrolled:not(.nav-open) .site-header{transform:translateY(calc(-100% - 1rem));opacity:0;pointer-events:none}
@@ -143,3 +142,18 @@ body.nav-open .site-header{transform:translateY(0);opacity:1;pointer-events:auto
 body.nav-open .site-header{padding-right:5rem}
 @media(max-width:600px){body.nav-open .site-header{padding-right:.8rem;padding-top:.6rem}.nav-peek{top:.65rem;right:.7rem;width:42px;height:42px}body.nav-open .brand{padding-right:3rem}}
 @media(prefers-reduced-motion:reduce){.site-header,.nav-peek{transition:none!important}}
+
+/* Avance 2: carga del dato, validación en vivo y borradores locales */
+.daily-fact-section{padding:clamp(3.5rem,8vw,7rem) 1.25rem;background:radial-gradient(ellipse at 18% 22%,rgba(225,191,138,.26),transparent 42%),linear-gradient(140deg,#f4efe7,#e9dfd3)}
+.daily-fact-card{max-width:780px;margin:auto;padding:clamp(1.5rem,5vw,3rem);border:1px solid rgba(255,255,255,.86);border-radius:30px;background:linear-gradient(140deg,rgba(255,255,255,.72),rgba(255,255,255,.38));box-shadow:0 24px 70px rgba(56,35,35,.1),inset 0 1px rgba(255,255,255,.95);backdrop-filter:blur(28px) saturate(150%);-webkit-backdrop-filter:blur(28px) saturate(150%)}
+.daily-fact-card h2{margin:.4rem 0 1rem;color:var(--wine);font:500 clamp(2rem,5vw,3.2rem)/1.1 var(--serif)}
+.daily-fact-card>p:not(.eyebrow,.daily-fact-status){min-height:3.2em;color:#564745;font-size:clamp(1.05rem,2vw,1.3rem)}
+.daily-fact-status{min-height:1.5em;color:#826c61;font-size:.82rem}
+#daily-fact-content.is-loading{opacity:.45}.fact-arrive{animation:fact-arrive .35s ease both}@keyframes fact-arrive{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.daily-fact-card button:disabled{opacity:.6;cursor:wait}
+.inquiry-form [data-validation-message]{min-height:1em;color:#ffe2a6;font-size:.72rem}
+.inquiry-grid input.field-invalid,.inquiry-grid textarea.field-invalid{border-color:#ff9e9b;box-shadow:0 0 0 2px rgba(255,120,120,.16)}
+.inquiry-grid input.field-valid,.inquiry-grid textarea.field-valid{border-color:#9ed7bb;box-shadow:0 0 0 2px rgba(118,207,162,.13)}
+.clear-draft{justify-self:start;padding:.5rem 0;border:0;background:transparent;color:#f5dfbc;font:500 .78rem var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.fact-arrive{animation:none}}
+
