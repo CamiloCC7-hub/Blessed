@@ -64,6 +64,7 @@
     const monthNames = new Intl.DateTimeFormat('es-CO', { month: 'long', year: 'numeric', timeZone: 'UTC' });
     const firstMonth = new Date(Date.UTC(2026, 10, 1));
     const reservedDays = new Set(['2026-11-14','2026-11-21','2026-12-08','2026-12-24','2026-12-25','2026-12-31','2027-01-01','2027-02-14','2027-03-19','2027-05-10','2027-06-20','2027-07-20','2027-09-15','2027-10-31','2027-12-24','2027-12-25','2027-12-31']);
+    try { JSON.parse(localStorage.getItem('cecilia-booking-requests-v1') || '[]').forEach((booking) => { if (booking.date) reservedDays.add(booking.date); }); } catch { /* Usa los días de demostración si el almacenamiento no está disponible. */ }
     let monthOffset = 0;
     let selectedDate = '';
     const isoDate = (year, month, day) => [year, String(month + 1).padStart(2,'0'), String(day).padStart(2,'0')].join('-');
