@@ -14,6 +14,7 @@
       try {
         const response = await fetch('./data.json', { headers: { Accept: 'application/json' } });
         if (response.status === 404) throw new Error('No encontramos el archivo de curiosidades (404).');
+        if (response.status === 500) throw new Error('El servicio de curiosidades tuvo un problema (500).');
         if (!response.ok) throw new Error('El servicio respondió con un error (' + response.status + ').');
         const payload = await response.json();
         if (!Array.isArray(payload.facts) || !payload.facts.length) throw new Error('El archivo no contiene curiosidades disponibles.');
@@ -21,9 +22,16 @@
         showNextFact();
         dailyFactStatus.textContent = 'Curiosidades cargadas desde data.json';
       } catch (error) {
-        dailyFactContent.textContent = 'Hoy el dato no llegó a la mesa. Puedes intentar de nuevo.';
-        dailyFactStatus.textContent = error.message || 'No fue posible cargar los datos. Revisa tu conexión e inténtalo otra vez.';
-        dailyFactButton.textContent = 'Reintentar carga ↻';
+        facts = [
+          { title: 'El mote tiene su carácter', text: 'El ñame le da cuerpo al mote de queso y el queso costeño suma ese punto salado que sabe a cocina cordobesa.' },
+          { title: 'Un equipo elegido en casa', text: 'La familia Cecilia recorrió restaurantes de Sahagún para invitar a su equipo a sumarse con mejores oportunidades. Hoy son parte de esta mesa.' },
+          { title: 'Cumpleaños con coro incluido', text: 'En Cecilia, quien celebra su cumpleaños recibe un postre y una serenata de cortesía. La afinación corre por cuenta de la emoción.' },
+          { title: 'La sobremesa también cuenta', text: 'En Córdoba, los platos de tradición suelen reunir ñame, queso costeño, suero y conversación. La última parte no aparece en la cuenta.' }
+        ];
+        factIndex = -1;
+        showNextFact();
+        dailyFactStatus.textContent = location.protocol === 'file:' ? 'Mostrando datos locales. Para probar Fetch, abre la página publicada.' : 'Mostrando una copia local porque el archivo de datos no respondió.';
+        dailyFactButton.textContent = 'Otro dato ✦';
       } finally {
         dailyFactContent.classList.remove('is-loading');
         dailyFactButton.disabled = false;
@@ -41,6 +49,97 @@
     dailyFactButton.addEventListener('click', () => facts.length ? showNextFact() : loadDailyFacts());
     loadDailyFacts();
   }
+
+  // Calendario de demostración (noviembre 2026–diciembre 2027); disponibilidad real se confirma con el equipo.
+  const bookingDialog = document.querySelector('#booking-dialog');
+  if (bookingDialog) {
+    const openBooking = document.querySelector('#open-booking');
+    const monthLabel = document.querySelector('#calendar-month');
+    const calendarGrid = document.querySelector('#calendar-grid');
+    const calendarStatus = document.querySelector('#calendar-status');
+    const bookingStep = document.querySelector('#booking-step');
+    const bookingForm = document.querySelector('#booking-form');
+    const timeOptions = document.querySelector('#time-options');
+    const confirmation = document.querySelector('#booking-confirmation');
+    const monthNames = new Intl.DateTimeFormat('es-CO', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+    const firstMonth = new Date(Date.UTC(2026, 10, 1));
+    const reservedDays = new Set(['2026-11-14','2026-11-21','2026-12-08','2026-12-24','2026-12-25','2026-12-31','2027-01-01','2027-02-14','2027-03-19','2027-05-10','2027-06-20','2027-07-20','2027-09-15','2027-10-31','2027-12-24','2027-12-25','2027-12-31']);
+    let monthOffset = 0;
+    let selectedDate = '';
+    const isoDate = (year, month, day) => [year, String(month + 1).padStart(2,'0'), String(day).padStart(2,'0')].join('-');
+    function renderCalendar() {
+      const year = 2026 + Math.floor((10 + monthOffset) / 12);
+      const month = (10 + monthOffset) % 12;
+      const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+      const mondayOffset = (new Date(Date.UTC(year, month, 1)).getUTCDay() + 6) % 7;
+      monthLabel.textContent = monthNames.format(new Date(Date.UTC(year, month, 1)));
+      calendarGrid.replaceChildren();
+      for (let i = 0; i < mondayOffset; i++) { const blank = document.createElement('span'); blank.className = 'calendar-blank'; blank.setAttribute('aria-hidden','true'); calendarGrid.append(blank); }
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = isoDate(year, month, day);
+        const button = document.createElement('button');
+        button.type = 'button'; button.className = 'calendar-day'; button.textContent = day; button.dataset.date = date;
+        if (reservedDays.has(date)) { button.disabled = true; button.classList.add('is-booked'); button.setAttribute('aria-label', day + ', reservado'); button.title = 'Reservado'; }
+        else { button.setAttribute('aria-label', day + ', disponible'); button.addEventListener('click', () => chooseDate(date, button)); }
+        if (date === selectedDate) button.classList.add('is-selected');
+        calendarGrid.append(button);
+      }
+      document.querySelector('#calendar-prev').disabled = monthOffset === 0;
+      document.querySelector('#calendar-next').disabled = monthOffset === 13;
+    }
+    function chooseDate(date, button) {
+      selectedDate = date; renderCalendar();
+      const prettyDate = new Intl.DateTimeFormat('es-CO', { dateStyle: 'full', timeZone: 'UTC' }).format(new Date(date + 'T12:00:00Z'));
+      calendarStatus.textContent = 'Fecha elegida: ' + prettyDate;
+      bookingStep.hidden = false; bookingForm.hidden = true; confirmation.hidden = true;
+      document.querySelector('#chosen-date-label').textContent = 'Ahora elige la hora · ' + prettyDate;
+      timeOptions.replaceChildren();
+      ['12:00 p. m.','1:30 p. m.','4:00 p. m.','6:30 p. m.','8:00 p. m.'].forEach((time) => {
+        const option = document.createElement('button'); option.type = 'button'; option.className = 'time-option'; option.textContent = time;
+        option.addEventListener('click', () => { timeOptions.querySelectorAll('.time-option').forEach((item) => item.classList.remove('is-selected')); option.classList.add('is-selected'); bookingForm.hidden = false; bookingForm.dataset.date = date; bookingForm.dataset.time = time; });
+        timeOptions.append(option);
+      });
+      button?.focus({ preventScroll: true });
+    }
+    openBooking?.addEventListener('click', () => { renderCalendar(); bookingDialog.showModal(); });
+    document.querySelector('#calendar-prev').addEventListener('click', () => { monthOffset = Math.max(0, monthOffset - 1); renderCalendar(); });
+    document.querySelector('#calendar-next').addEventListener('click', () => { monthOffset = Math.min(13, monthOffset + 1); renderCalendar(); });
+    bookingDialog.addEventListener('click', (event) => { if (event.target === bookingDialog) bookingDialog.close(); });
+    bookingForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!bookingForm.reportValidity() || !bookingForm.dataset.time) return;
+      const entry = Object.fromEntries(new FormData(bookingForm));
+      entry.date = bookingForm.dataset.date; entry.time = bookingForm.dataset.time; entry.createdAt = new Date().toISOString();
+      try {
+        const bookings = JSON.parse(localStorage.getItem('cecilia-booking-requests-v1') || '[]');
+        bookings.push(entry); localStorage.setItem('cecilia-booking-requests-v1', JSON.stringify(bookings));
+      } catch { /* La solicitud aún puede prepararse aunque el almacenamiento esté desactivado. */ }
+      reservedDays.add(entry.date); renderCalendar(); bookingForm.hidden = true; confirmation.hidden = false;
+      const dateText = new Intl.DateTimeFormat('es-CO', { dateStyle: 'full', timeZone: 'UTC' }).format(new Date(entry.date + 'T12:00:00Z'));
+      const message = 'Hola, Cecilia. Quiero solicitar una reserva para ' + entry.name + '. Fecha: ' + dateText + ', hora: ' + entry.time + ', personas: ' + entry.guests + '. Teléfono: ' + entry.phone + '. Correo: ' + entry.email + '. Por favor, confirmen disponibilidad.';
+      const wa = 'https://wa.me/573017222769?text=' + encodeURIComponent(message);
+      const mailSubject = encodeURIComponent('Solicitud de reserva Cecilia · ' + dateText);
+      const mailBody = encodeURIComponent('Hola ' + entry.name + ',\n\nRecibimos tu solicitud de reserva para ' + dateText + ' a las ' + entry.time + ' (' + entry.guests + ' personas).\n\nEsta solicitud aún no está confirmada; el equipo Cecilia debe validar disponibilidad.\n\nCecilia Restaurante');
+      confirmation.innerHTML = '<h3>¡Tu plan ya tiene fecha!</h3><p>La solicitud quedó guardada en este navegador. Confirma con Cecilia para verificar disponibilidad.</p><div class="confirmation-actions"><a class="button button-gold" href="' + wa + '" target="_blank" rel="noopener noreferrer">Enviar solicitud por WhatsApp ↗</a><a class="button button-outline" href="mailto:' + encodeURIComponent(entry.email) + '?subject=' + mailSubject + '&body=' + mailBody + '">Preparar correo ↗</a></div><small>Por seguridad, esta página no envía correos ni confirma reservas automáticamente.</small>';
+      calendarStatus.textContent = 'Solicitud preparada; fecha marcada como reservada en este navegador.';
+    });
+    document.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => document.getElementById(button.dataset.closeDialog)?.close()));
+    renderCalendar();
+  }
+
+  const surveyDialog = document.querySelector('#survey-dialog');
+  const surveyOpen = document.querySelector('#open-survey');
+  const surveyForm = document.querySelector('#survey-form');
+  surveyOpen?.addEventListener('click', () => surveyDialog.showModal());
+  surveyForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!surveyForm.reportValidity()) return;
+    const response = Object.fromEntries(new FormData(surveyForm)); response.sentAt = new Date().toISOString();
+    try { const list = JSON.parse(localStorage.getItem('cecilia-satisfaction-surveys-v1') || '[]'); list.push(response); localStorage.setItem('cecilia-satisfaction-surveys-v1', JSON.stringify(list)); } catch {}
+    document.querySelector('#survey-status').textContent = '¡Gracias! Tu opinión quedó registrada en este dispositivo para esta demostración.';
+    surveyForm.reset();
+  });
+  surveyDialog?.addEventListener('click', (event) => { if (event.target === surveyDialog) surveyDialog.close(); });
 
   const siteHeader = document.querySelector('#site-header');
   const navPeek = document.querySelector('.nav-peek');
