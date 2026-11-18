@@ -2,6 +2,7 @@
   // Dato dinámico desde el archivo REST local: sirve para practicar Fetch y async/await.
   const dailyFactContent = document.querySelector('#daily-fact-content');
   const dailyFactTitle = document.querySelector('#daily-fact-title');
+  const dailyFactSource = document.querySelector('#daily-fact-source');
   const dailyFactStatus = document.querySelector('#daily-fact-status');
   const dailyFactButton = document.querySelector('#refresh-daily-fact');
   if (dailyFactContent && dailyFactStatus && dailyFactButton) {
@@ -23,8 +24,14 @@
         dailyFactStatus.textContent = 'Curiosidades cargadas desde data.json';
       } catch (error) {
         facts = [
-          { title: 'El mote tiene su carácter', text: 'El ñame le da cuerpo al mote de queso y el queso costeño suma ese punto salado que sabe a cocina cordobesa.' },
+          { title: 'El mote tiene su carácter', text: 'El ñame le da cuerpo al mote de queso y el queso costeño suma ese punto salado que sabe a cocina cordobesa.', source: 'https://www.cordoba.gov.co/publicaciones/18/turismo/' },
+          { title: 'Queso costeño: sal que conserva', text: 'Su sabor salado también cumple una función práctica: en el calor y la humedad del Caribe, ayuda a conservar el queso.', source: 'https://mng.mincultura.gov.co/Sitios/patrimonio/bibliotecas-de-cocinas/tomo10.pdf' },
           { title: 'Un equipo elegido en casa', text: 'La familia Cecilia recorrió restaurantes de Sahagún para invitar a su equipo a sumarse con mejores oportunidades. Hoy son parte de esta mesa.' },
+          { title: 'El bocachico viaja río arriba', text: 'Durante la subienda, este pez migra hacia las cabeceras de los ríos para desovar. Por eso su temporada también marcaba el ritmo de muchas cocinas ribereñas.', source: 'https://patrimonio.mincultura.gov.co/SiteAssets/Paginas/Publicaciones-biblioteca-cocinas/biblioteca%2011.pdf' },
+          { title: 'Un dulce que se toma su tiempo', text: 'Algunas preparaciones tradicionales de mongo-mongo pueden pasar cerca de 24 horas al fuego lento, mientras sus frutas y sabores se integran.', source: 'https://patrimonio.mincultura.gov.co/SiteAssets/Paginas/Publicaciones-biblioteca-cocinas/biblioteca16.pdf' },
+          { title: 'La cocina caribeña cuenta muchos encuentros', text: 'En sus mesas dialogan ingredientes y saberes indígenas, africanos, europeos y de otras comunidades. Cada receta guarda parte de esa historia compartida.', source: 'https://www.senalcolombia.tv/cultura/comida-colombiana-por-regiones' },
+          { title: 'El maíz ya estaba en la mesa', text: 'Antes de la llegada española, distintos pueblos indígenas de Colombia ya preparaban con maíz alimentos como arepas, chicha y mazamorra.', source: 'https://www.senalcolombia.tv/documental/top-5-comida-ancestral-colombiana' },
+          { title: 'Un recetario vivo', text: 'La Gobernación de Córdoba documenta recetas tradicionales como mote de queso, cabeza de gato y gallina guisada, con variaciones que siguen pasando de cocina en cocina.', source: 'https://www.cordoba.gov.co/publicaciones/785/mujeres-con-sabor-a-cordoba-exploracion-creativa-culinaria/' },
           { title: 'Cumpleaños con coro incluido', text: 'En Cecilia, quien celebra su cumpleaños recibe un postre y una serenata de cortesía. La afinación corre por cuenta de la emoción.' },
           { title: 'La sobremesa también cuenta', text: 'En Córdoba, los platos de tradición suelen reunir ñame, queso costeño, suero y conversación. La última parte no aparece en la cuenta.' }
         ];
@@ -42,6 +49,8 @@
       factIndex = (factIndex + 1) % facts.length;
       dailyFactContent.textContent = facts[factIndex].text;
       dailyFactTitle.textContent = facts[factIndex].title;
+      dailyFactSource.hidden = !facts[factIndex].source;
+      if (facts[factIndex].source) dailyFactSource.href = facts[factIndex].source;
       dailyFactContent.classList.remove('fact-arrive');
       requestAnimationFrame(() => dailyFactContent.classList.add('fact-arrive'));
       dailyFactStatus.textContent = 'Dato ' + (factIndex + 1) + ' de ' + facts.length;
@@ -63,8 +72,21 @@
     const confirmation = document.querySelector('#booking-confirmation');
     const monthNames = new Intl.DateTimeFormat('es-CO', { month: 'long', year: 'numeric', timeZone: 'UTC' });
     const firstMonth = new Date(Date.UTC(2026, 10, 1));
-    const reservedDays = new Set(['2026-11-14','2026-11-21','2026-12-08','2026-12-24','2026-12-25','2026-12-31','2027-01-01','2027-02-14','2027-03-19','2027-05-10','2027-06-20','2027-07-20','2027-09-15','2027-10-31','2027-12-24','2027-12-25','2027-12-31']);
-    try { JSON.parse(localStorage.getItem('cecilia-booking-requests-v1') || '[]').forEach((booking) => { if (booking.date) reservedDays.add(booking.date); }); } catch { /* Usa los días de demostración si el almacenamiento no está disponible. */ }
+    const defaultReservedDays = ['2026-11-14','2026-11-21','2026-12-08','2026-12-24','2026-12-25','2026-12-31','2027-01-01','2027-02-14','2027-03-19','2027-05-10','2027-06-20','2027-07-20','2027-09-15','2027-10-31','2027-12-24','2027-12-25','2027-12-31'];
+    const reservedDays = new Set();
+    const reservationWindow = 15 * 60 * 1000;
+    const demoHoldKey = 'cecilia-demo-hold-expiry-v1';
+    let demoHoldExpires = Date.now() + reservationWindow;
+    try {
+      const savedDemoHold = localStorage.getItem(demoHoldKey);
+      demoHoldExpires = savedDemoHold === null ? Date.now() + reservationWindow : Number(savedDemoHold);
+      if (savedDemoHold === null) localStorage.setItem(demoHoldKey, String(demoHoldExpires));
+      if (demoHoldExpires > Date.now()) defaultReservedDays.forEach((date) => reservedDays.add(date));
+      JSON.parse(localStorage.getItem('cecilia-booking-requests-v1') || '[]').forEach((booking) => {
+        const expires = Number(booking.expiresAt) || (Date.parse(booking.createdAt || '') + reservationWindow);
+        if (booking.date && expires > Date.now()) reservedDays.add(booking.date);
+      });
+    } catch { /* Usa los días de demostración si el almacenamiento no está disponible. */ }
     let monthOffset = 0;
     let selectedDate = '';
     const isoDate = (year, month, day) => [year, String(month + 1).padStart(2,'0'), String(day).padStart(2,'0')].join('-');
@@ -110,7 +132,7 @@
       event.preventDefault();
       if (!bookingForm.reportValidity() || !bookingForm.dataset.time) return;
       const entry = Object.fromEntries(new FormData(bookingForm));
-      entry.date = bookingForm.dataset.date; entry.time = bookingForm.dataset.time; entry.createdAt = new Date().toISOString();
+      entry.date = bookingForm.dataset.date; entry.time = bookingForm.dataset.time; entry.createdAt = new Date().toISOString(); entry.expiresAt = Date.now() + reservationWindow;
       try {
         const bookings = JSON.parse(localStorage.getItem('cecilia-booking-requests-v1') || '[]');
         bookings.push(entry); localStorage.setItem('cecilia-booking-requests-v1', JSON.stringify(bookings));
@@ -120,12 +142,18 @@
       const message = 'Hola, Cecilia. Quiero solicitar una reserva para ' + entry.name + '. Fecha: ' + dateText + ', hora: ' + entry.time + ', personas: ' + entry.guests + '. Teléfono: ' + entry.phone + '. Correo: ' + entry.email + '. Por favor, confirmen disponibilidad.';
       const wa = 'https://wa.me/573017222769?text=' + encodeURIComponent(message);
       const mailSubject = encodeURIComponent('Solicitud de reserva Cecilia · ' + dateText);
-      const mailBody = encodeURIComponent('Hola ' + entry.name + ',\n\nRecibimos tu solicitud de reserva para ' + dateText + ' a las ' + entry.time + ' (' + entry.guests + ' personas).\n\nEsta solicitud aún no está confirmada; el equipo Cecilia debe validar disponibilidad.\n\nCecilia Restaurante');
-      confirmation.innerHTML = '<h3>¡Tu plan ya tiene fecha!</h3><p>La solicitud quedó guardada en este navegador. Confirma con Cecilia para verificar disponibilidad.</p><div class="confirmation-actions"><a class="button button-gold" href="' + wa + '" target="_blank" rel="noopener noreferrer">Enviar solicitud por WhatsApp ↗</a><a class="button button-outline" href="mailto:' + encodeURIComponent(entry.email) + '?subject=' + mailSubject + '&body=' + mailBody + '">Preparar correo ↗</a></div><small>Por seguridad, esta página no envía correos ni confirma reservas automáticamente.</small>';
-      calendarStatus.textContent = 'Solicitud preparada; fecha marcada como reservada en este navegador.';
+      const mailBody = encodeURIComponent('Hola ' + entry.name + ',\n\nRecibimos tu solicitud para el ' + dateText + ' a las ' + entry.time + '. En breve confirmaremos contigo los detalles.\n\nCecilia Restaurante');
+      confirmation.innerHTML = '<h3>¡Gracias por elegir Cecilia!</h3><p>Tu solicitud quedó registrada y guardada. En breve te contactaremos para confirmar los detalles.</p><div class="confirmation-actions"><a class="button button-gold" href="' + wa + '" target="_blank" rel="noopener noreferrer">Continuar en el chat privado ↗</a><a class="button button-outline" href="mailto:' + encodeURIComponent(entry.email) + '?subject=' + mailSubject + '&body=' + mailBody + '">Abrir correo ↗</a></div><small>Por seguridad, reservamos este horario por 15 minutos mientras confirmas tu reserva en el chat privado.</small>';
+      calendarStatus.textContent = 'Tu horario quedó apartado por 15 minutos.';
+      window.setTimeout(() => {
+        if (Date.now() >= entry.expiresAt) { reservedDays.delete(entry.date); renderCalendar(); calendarStatus.textContent = 'El lapso de reserva terminó; el horario vuelve a estar disponible.'; }
+      }, reservationWindow);
     });
     document.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => document.getElementById(button.dataset.closeDialog)?.close()));
     renderCalendar();
+    window.setTimeout(() => {
+      if (Date.now() >= demoHoldExpires) { defaultReservedDays.forEach((date) => reservedDays.delete(date)); renderCalendar(); }
+    }, Math.max(0, demoHoldExpires - Date.now()));
   }
 
   const surveyDialog = document.querySelector('#survey-dialog');
