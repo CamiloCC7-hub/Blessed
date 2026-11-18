@@ -30,7 +30,7 @@
         ];
         factIndex = -1;
         showNextFact();
-        dailyFactStatus.textContent = location.protocol === 'file:' ? 'Mostrando datos locales. Para probar Fetch, abre la página publicada.' : 'Mostrando una copia local porque el archivo de datos no respondió.';
+        dailyFactStatus.textContent = location.protocol === 'file:' ? 'Mostrando datos locales. Para probar Fetch, abre la página publicada.' : 'Error de carga: ' + (error.message || 'respuesta inesperada') + '. Mostramos una copia local.';
         dailyFactButton.textContent = 'Otro dato ✦';
       } finally {
         dailyFactContent.classList.remove('is-loading');
