@@ -140,7 +140,7 @@
       reservedDays.add(entry.date); renderCalendar(); bookingForm.hidden = true; confirmation.hidden = false;
       const dateText = new Intl.DateTimeFormat('es-CO', { dateStyle: 'full', timeZone: 'UTC' }).format(new Date(entry.date + 'T12:00:00Z'));
       const message = 'Hola, Cecilia. Quiero solicitar una reserva para ' + entry.name + '. Fecha: ' + dateText + ', hora: ' + entry.time + ', personas: ' + entry.guests + '. Teléfono: ' + entry.phone + '. Correo: ' + entry.email + '. Por favor, confirmen disponibilidad.';
-      const wa = 'https://wa.me/573017222769?text=' + encodeURIComponent(message);
+      const wa = 'https://web.whatsapp.com/send?phone=573017222769&text=' + encodeURIComponent(message);
       const mailSubject = encodeURIComponent('Solicitud de reserva Cecilia · ' + dateText);
       const mailBody = encodeURIComponent('Hola ' + entry.name + ',\n\nRecibimos tu solicitud para el ' + dateText + ' a las ' + entry.time + '. En breve confirmaremos contigo los detalles.\n\nCecilia Restaurante');
       confirmation.innerHTML = '<h3>¡Gracias por elegir Cecilia!</h3><p>Tu solicitud quedó registrada y guardada. En breve te contactaremos para confirmar los detalles.</p><div class="confirmation-actions"><a class="button button-gold" href="' + wa + '" target="_blank" rel="noopener noreferrer">Continuar en el chat privado ↗</a><a class="button button-outline" href="mailto:' + encodeURIComponent(entry.email) + '?subject=' + mailSubject + '&body=' + mailBody + '">Abrir correo ↗</a></div><small>Por seguridad, reservamos este horario por 15 minutos mientras confirmas tu reserva en el chat privado.</small>';
@@ -343,7 +343,7 @@
       if (!fields.every(validateField)) { inquiryForm.reportValidity(); status.textContent = 'Revisa los campos marcados antes de continuar.'; return; }
       const data = new FormData(inquiryForm);
       const message = ['Hola, Cecilia. Quisiera consultar una reserva:', 'Nombre: ' + data.get('nombre'), 'Correo: ' + data.get('email'), 'Teléfono: ' + data.get('telefono'), 'Fecha: ' + data.get('fecha'), 'Personas: ' + data.get('personas'), data.get('mensaje') ? 'Ocasión o detalle: ' + data.get('mensaje') : ''].filter(Boolean).join('\n');
-      const whatsappUrl = 'https://wa.me/573017222769?text=' + encodeURIComponent(message);
+      const whatsappUrl = 'https://web.whatsapp.com/send?phone=573017222769&text=' + encodeURIComponent(message);
       const opened = window.open(whatsappUrl, '_blank');
       if (opened) opened.opener = null;
       if (opened) { localStorage.removeItem(draftKey); }
