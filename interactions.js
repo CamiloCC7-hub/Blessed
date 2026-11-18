@@ -1,4 +1,47 @@
 (() => {
+  // Dato dinámico desde el archivo REST local: sirve para practicar Fetch y async/await.
+  const dailyFactContent = document.querySelector('#daily-fact-content');
+  const dailyFactTitle = document.querySelector('#daily-fact-title');
+  const dailyFactStatus = document.querySelector('#daily-fact-status');
+  const dailyFactButton = document.querySelector('#refresh-daily-fact');
+  if (dailyFactContent && dailyFactStatus && dailyFactButton) {
+    let facts = [];
+    let factIndex = -1;
+    async function loadDailyFacts() {
+      dailyFactButton.disabled = true;
+      dailyFactStatus.textContent = 'Cargando curiosidades…';
+      dailyFactContent.classList.add('is-loading');
+      try {
+        const response = await fetch('./data.json', { headers: { Accept: 'application/json' } });
+        if (response.status === 404) throw new Error('No encontramos el archivo de curiosidades (404).');
+        if (!response.ok) throw new Error('El servicio respondió con un error (' + response.status + ').');
+        const payload = await response.json();
+        if (!Array.isArray(payload.facts) || !payload.facts.length) throw new Error('El archivo no contiene curiosidades disponibles.');
+        facts = payload.facts;
+        showNextFact();
+        dailyFactStatus.textContent = 'Curiosidades cargadas desde data.json';
+      } catch (error) {
+        dailyFactContent.textContent = 'Hoy el dato no llegó a la mesa. Puedes intentar de nuevo.';
+        dailyFactStatus.textContent = error.message || 'No fue posible cargar los datos. Revisa tu conexión e inténtalo otra vez.';
+        dailyFactButton.textContent = 'Reintentar carga ↻';
+      } finally {
+        dailyFactContent.classList.remove('is-loading');
+        dailyFactButton.disabled = false;
+      }
+    }
+    function showNextFact() {
+      if (!facts.length) return loadDailyFacts();
+      factIndex = (factIndex + 1) % facts.length;
+      dailyFactContent.textContent = facts[factIndex].text;
+      dailyFactTitle.textContent = facts[factIndex].title;
+      dailyFactContent.classList.remove('fact-arrive');
+      requestAnimationFrame(() => dailyFactContent.classList.add('fact-arrive'));
+      dailyFactStatus.textContent = 'Dato ' + (factIndex + 1) + ' de ' + facts.length;
+    }
+    dailyFactButton.addEventListener('click', () => facts.length ? showNextFact() : loadDailyFacts());
+    loadDailyFacts();
+  }
+
   const siteHeader = document.querySelector('#site-header');
   const navPeek = document.querySelector('.nav-peek');
   if (siteHeader && navPeek) {
@@ -50,9 +93,9 @@
     birthday: { label: 'SÍ, ES UNA SORPRESA REAL', text: 'Si celebras tu cumpleaños en Cecilia, te regalan un postre y una serenata. Sin costo: tú solo tienes que decidir si cantas el coro.', source: '' },
     quality: { label: 'LA PROMESA DE LA CASA', text: 'La apuesta de Cecilia es que la calidad de la comida y el cariño de la atención hagan que la cuenta se sienta pequeña junto a la experiencia. Y que quieras volver.', source: '' },
     celebrate: { label: 'PLAN REDONDO', text: 'Cumpleaños en Cecilia: postre de regalo, serenata y un motivo adicional para soplar las velas con ganas.', source: '' },
-    cecilia: { label: '¿SABIAS QUÉ? · EL NOMBRE', text: 'La inspiración fue Cecilia, la madre del dueño. Con cinco hijos y pocos recursos, se rebuscaba vendiendo empanadas, fritos y arepas para darles estudio y una vida mejor. Por eso esta casa lleva su nombre.', source: '' },
-    roots: { label: '¿SABIAS QUÉ? · EL PRIMER PASO', text: 'Después de estudiar y graduarse, sus hijos abrieron un pequeño restaurante en El Chocó. Esa primera mesa fue el comienzo del camino de la familia.', source: '' },
-    journey: { label: '¿SABIAS QUÉ? · EL CAMINO', text: 'Después del primer restaurante en El Chocó, la familia abrió sucursales en Montería y Chinú; hace alrededor de cinco meses llegó a su sede más reciente en Sahagún, Córdoba.', source: '' },
+    cecilia: { label: 'PISTA RESUELTA · EL NOMBRE', text: 'La inspiración fue Cecilia, la madre del dueño. Con cinco hijos y pocos recursos, se rebuscaba vendiendo empanadas, fritos y arepas para darles estudio y una vida mejor. Por eso esta casa lleva su nombre.', source: '' },
+    roots: { label: 'PISTA RESUELTA · EL PRIMER PASO', text: 'Después de estudiar y graduarse, sus hijos abrieron un pequeño restaurante en El Chocó. Esa primera mesa fue el comienzo del camino de la familia.', source: '' },
+    journey: { label: 'PISTA RESUELTA · EL CAMINO', text: 'Después del primer restaurante en El Chocó, la familia abrió sucursales en Montería y Chinú; hace alrededor de cinco meses llegó a su sede más reciente en Sahagún, Córdoba.', source: '' },
     cordobaMote: { label: 'PISTA DE CÓRDOBA · EL MOTE', text: 'El mote de queso se apoya en dos protagonistas: ñame y queso costeño. El ñame le aporta su cuerpo y el queso, su carácter salado. Está entre los platos emblemáticos de las sabanas de Córdoba y Sucre.', source: 'https://mng.mincultura.gov.co/Sitios/patrimonio/bibliotecas-de-cocinas/tomos/tomo15.pdf' },
     cordobaGallina: { label: 'PISTA DE CÓRDOBA · LA GALLINA', text: 'La gallina guisada forma parte de las recetas tradicionales que la Gobernación de Córdoba destaca junto al mote de queso en su proyecto “Mujeres con sabor a Córdoba”, que también llegó a Sahagún.', source: 'https://www.cordoba.gov.co/publicaciones/785/mujeres-con-sabor-a-cordoba-exploracion-creativa-culinaria/' },
     cordobaBocachico: { label: 'PISTA DE CÓRDOBA · EL RÍO', text: 'El sancocho de bocachico aparece entre los sabores típicos que la Gobernación destaca en la cocina cordobesa: una pista de cuánto conversa esta cocina con sus ríos.', source: 'https://www.cordoba.gov.co/publicaciones/18/turismo/' },
@@ -130,17 +173,52 @@
   // Solicitud sin backend: se prepara un mensaje editable que la persona envía desde WhatsApp.
   const inquiryForm = document.querySelector('#inquiry-form');
   if (inquiryForm) {
+    const draftKey = 'cecilia-reservation-draft-v1';
+    const status = document.querySelector('#inquiry-status');
+    const fields = Array.from(inquiryForm.querySelectorAll('input, textarea'));
+    const validationMessage = (field) => {
+      let message = field.parentElement.querySelector('[data-validation-message]');
+      if (!message) { message = document.createElement('small'); message.dataset.validationMessage = ''; message.setAttribute('aria-live', 'polite'); field.insertAdjacentElement('afterend', message); }
+      return message;
+    };
+    const validateField = (field) => {
+      const message = validationMessage(field);
+      const valid = field.checkValidity();
+      field.classList.toggle('field-invalid', !valid && (field.value.length > 0 || field.dataset.touched === 'true'));
+      field.classList.toggle('field-valid', valid && field.value.length > 0);
+      message.textContent = valid ? (field.value ? 'Se ve bien.' : '') : field.validationMessage;
+      return valid;
+    };
+    try {
+      const saved = JSON.parse(localStorage.getItem(draftKey) || '{}');
+      fields.forEach((field) => { if (saved[field.name]) { field.value = saved[field.name]; validateField(field); } });
+      if (Object.keys(saved).length) status.textContent = 'Recuperamos tu borrador guardado en este navegador. Puedes borrarlo cuando quieras.';
+    } catch { status.textContent = 'No pudimos recuperar el borrador guardado en este navegador.'; }
+    const saveDraft = () => {
+      const draft = Object.fromEntries(fields.map((field) => [field.name, field.value]));
+      try { localStorage.setItem(draftKey, JSON.stringify(draft)); status.textContent = 'Borrador guardado solo en este navegador.'; } catch { status.textContent = 'No se pudo guardar el borrador en este navegador.'; }
+    };
+    fields.forEach((field) => {
+      field.addEventListener('input', () => { field.dataset.touched = 'true'; validateField(field); saveDraft(); });
+      field.addEventListener('change', () => { field.dataset.touched = 'true'; validateField(field); saveDraft(); });
+      field.addEventListener('blur', () => { field.dataset.touched = 'true'; validateField(field); });
+    });
+    let clearDraft = inquiryForm.querySelector('[data-clear-draft]');
+    if (!clearDraft) { clearDraft = document.createElement('button'); clearDraft.type = 'button'; clearDraft.className = 'clear-draft'; clearDraft.dataset.clearDraft = ''; clearDraft.textContent = 'Borrar borrador guardado'; inquiryForm.append(clearDraft); }
+    clearDraft.addEventListener('click', () => { localStorage.removeItem(draftKey); inquiryForm.reset(); fields.forEach((field) => { field.classList.remove('field-valid','field-invalid'); field.dataset.touched = 'false'; validationMessage(field).textContent = ''; }); status.textContent = 'Borrador borrado de este navegador.'; });
     const dateInput = inquiryForm.querySelector('input[name="fecha"]');
     const dateValue = (date) => [date.getFullYear(), String(date.getMonth()+1).padStart(2,'0'), String(date.getDate()).padStart(2,'0')].join('-');
     const today = new Date(); const latestDate = new Date(today); latestDate.setFullYear(latestDate.getFullYear()+1);
     dateInput.min = dateValue(today); dateInput.max = dateValue(latestDate);
     inquiryForm.addEventListener('submit', (event) => {
       event.preventDefault();
+      if (!fields.every(validateField)) { inquiryForm.reportValidity(); status.textContent = 'Revisa los campos marcados antes de continuar.'; return; }
       const data = new FormData(inquiryForm);
       const message = ['Hola, Cecilia. Quisiera consultar una reserva:', 'Nombre: ' + data.get('nombre'), 'Correo: ' + data.get('email'), 'Teléfono: ' + data.get('telefono'), 'Fecha: ' + data.get('fecha'), 'Personas: ' + data.get('personas'), data.get('mensaje') ? 'Ocasión o detalle: ' + data.get('mensaje') : ''].filter(Boolean).join('\n');
       const whatsappUrl = 'https://wa.me/573017222769?text=' + encodeURIComponent(message);
       const opened = window.open(whatsappUrl, '_blank');
       if (opened) opened.opener = null;
+      if (opened) { localStorage.removeItem(draftKey); }
       const status = document.querySelector('#inquiry-status');
       status.textContent = opened ? 'Listo: revisa los datos en WhatsApp y envía el mensaje para coordinar. La reserva aún no está confirmada.' : 'El navegador bloqueó la ventana. Permite abrir WhatsApp o escríbenos al 301 722 2769.';
       if (opened) sparkle(inquiryForm.querySelector('button[type="submit"]'));
@@ -343,3 +421,4 @@
   }, { passive: true });
   updateProgress();
 })();
+
