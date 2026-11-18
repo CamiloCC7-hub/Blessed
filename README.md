@@ -58,10 +58,10 @@ El directorio del proyecto contiene index.html en la raíz, listo para GitHub Pa
 - El borrador del formulario se guarda y recupera como JSON en `localStorage`; campos se validan en vivo con las restricciones HTML y mensajes visuales. El visitante puede borrar su borrador local.
 - El envío de reserva sigue preparando un mensaje para WhatsApp; la página no recibe ni guarda datos en un servidor. La solicitud solo se envía al restaurante cuando la persona revisa y confirma el mensaje en WhatsApp.
 - `fetch` no funciona si se abre `index.html` con doble clic (`file://`). Para probar el avance, abre el sitio publicado en GitHub Pages o sírvelo con un servidor web local. Los datos del formulario permanecen en el navegador y el borrador puede borrarse con el botón del formulario.
-- La carga de curiosidades incluye una copia local de respaldo para que el recuadro no quede vacío al abrir el HTML con doble clic.
-- El calendario de reservas cubre noviembre de 2026 a diciembre de 2027, tiene fechas de demostración tachadas y permite elegir día, hora y datos de contacto. Las solicitudes se conservan en `localStorage` en ese dispositivo; la disponibilidad no está conectada a un sistema real.
+- La carga de curiosidades incluye una copia local de respaldo para que el recuadro no quede vacío al abrir el HTML con doble clic; varios datos enlazan sus fuentes históricas y culinarias.
+- El calendario de reservas cubre noviembre de 2026 a diciembre de 2027, tiene fechas de demostración apartadas temporalmente y permite elegir día, hora y datos de contacto. El apartado local dura 15 minutos y se guarda en `localStorage` en ese dispositivo; la disponibilidad no está conectada a un sistema global.
 - Al terminar, la página prepara un mensaje para WhatsApp y un correo como borrador. No envía mensajes automáticamente: para confirmaciones reales por correo y WhatsApp se necesita integrar un backend y servicios autorizados de mensajería.
-- La encuesta propia recoge una calificación, el aspecto favorito y un comentario opcional; las respuestas se guardan localmente en el navegador para esta demostración.
+- La encuesta propia recoge atención, sabor, detalle favorito, recomendación y una mejora opcional; las respuestas se guardan localmente en el navegador para esta demostración.
 
 ## Alcance académico
 
