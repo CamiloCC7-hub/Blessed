@@ -16,4 +16,4 @@ La raíz del repositorio conserva una copia publicable de Cecilia para que el en
 
 ## WhatsApp
 
-Los botones preparan un mensaje y abren WhatsApp Web en una pestaña nueva. Para usar la sesión ya iniciada en Brave, abre primero la página de Cecilia desde Brave. El sitio no puede seleccionar otro navegador ni enviar mensajes en nombre del visitante.
+Los botones preparan un mensaje y abren WhatsApp Web en una pestaña nueva.
