@@ -1,0 +1,314 @@
+[
+  {
+    "id": "1",
+    "name": "Ceviche crujiente de chicharrones",
+    "category": "ENTRADAS",
+    "price": "$30.000",
+    "description": "Un equilibrio vibrante que despierta el paladar.",
+    "image": "https://images.rappi.com/products/1762210411311_1762210344767_1762210343724.jpg",
+    "alt": "Ceviche de chicharrón con trozos dorados, cebolla morada y salsa fresca",
+    "fallback": "https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/5SAAIDXDOBBM3NP7P3IR7CACMY.jpg",
+    "credit": "https://www.rappi.com.co/p/ceviche-de-chicharron-5769504"
+  },
+  {
+    "id": "2",
+    "name": "Ceviche especial de chorizo",
+    "category": "ENTRADAS",
+    "price": "$28.000",
+    "description": "Una entrada intensa con carácter y sabor a tradición.",
+    "image": "https://treshermanos.lat/cdn/shop/files/ceviche_personal_tres_hermanos_cali_colombia.jpg?v=1759878894",
+    "alt": "Ceviche de chorizo con cebolla encurtida y maíz tostado",
+    "fallback": "https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/7NXTUPSDGVHURNSVUHUUT64YAM.png",
+    "credit": "https://www.treshermanos.lat/products/ceviche-de-chorizo-grande"
+  },
+  {
+    "id": "3",
+    "name": "Mote del Sinú",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$38.000",
+    "description": "Tradición de la casa, servida en cada cucharada.",
+    "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Mote del Sinú",
+    "fallback": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "4",
+    "name": "Gallina criolla guisada",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$38.000",
+    "description": "Una receta de tradición para disfrutar sin afán.",
+    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Gallina criolla guisada",
+    "fallback": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "5",
+    "name": "Costillas barbecue al estilo Cecilia",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$40.000",
+    "description": "Barbecue con carácter y ese toque que distingue a Cecilia.",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Costillas barbecue al estilo Cecilia",
+    "fallback": "https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "6",
+    "name": "Rollo de pechuga en salsa de la casa",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$42.000",
+    "description": "Pechuga enrollada y acompañada por la salsa de la casa.",
+    "image": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Rollo de pechuga en salsa de la casa",
+    "fallback": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "7",
+    "name": "Lomo de cerdo asado",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$34.000",
+    "description": "Sabor casero y ese doradito que abre el apetito.",
+    "image": "https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Lomo de cerdo asado",
+    "fallback": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "8",
+    "name": "Punta de anca",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$70.000",
+    "description": "Un corte protagonista para disfrutar sin mirar el reloj.",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Punta de anca",
+    "fallback": "https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "9",
+    "name": "Fettuccini cremoso con camarones",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$48.000",
+    "description": "Textura cremosa y camarones en cada bocado.",
+    "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Fettuccini cremoso con camarones",
+    "fallback": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "10",
+    "name": "Fettuccini en salsa de champiñones",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$48.000",
+    "description": "Una salsa cremosa que abraza cada hebra.",
+    "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Fettuccini en salsa de champiñones",
+    "fallback": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "11",
+    "name": "Arroz de camarón con patacones y aguacate",
+    "category": "PLATOS PRINCIPALES",
+    "price": "$50.000",
+    "description": "Arroz de camarón acompañado de patacones y aguacate.",
+    "image": "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Arroz de camarón con patacones y aguacate",
+    "fallback": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "12",
+    "name": "Láminas de cerdo",
+    "category": "PARA LOS MÁS PEQUEÑOS",
+    "price": "$24.000",
+    "description": "Una opción sabrosa para que los pequeños también disfruten.",
+    "image": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Láminas de cerdo",
+    "fallback": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "13",
+    "name": "Hamburguesa con papas a la francesa",
+    "category": "PARA LOS MÁS PEQUEÑOS",
+    "price": "$24.000",
+    "description": "La dupla favorita para comer rico y salir feliz.",
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Hamburguesa con papas a la francesa",
+    "fallback": "https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "14",
+    "name": "Cocada artesanal premium",
+    "category": "POSTRES",
+    "price": "$14.000",
+    "description": "Un clásico de coco con presentación especial.",
+    "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Cocada artesanal premium",
+    "fallback": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "15",
+    "name": "Tres leches caribeño",
+    "category": "POSTRES",
+    "price": "$16.000",
+    "description": "Suave, húmedo y con todo el encanto caribeño.",
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Tres leches caribeño",
+    "fallback": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "16",
+    "name": "Mousse de maracuyá",
+    "category": "POSTRES",
+    "price": "$18.000",
+    "description": "Ligero, fresco y con carácter tropical.",
+    "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Mousse de maracuyá",
+    "fallback": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "17",
+    "name": "Loba tropical",
+    "category": "POSTRES",
+    "price": "$21.000",
+    "description": "Una especialidad de la casa para cerrar con sorpresa.",
+    "image": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Loba tropical",
+    "fallback": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "18",
+    "name": "Helado artesanal de coco",
+    "category": "POSTRES",
+    "price": "$10.000",
+    "description": "Cremoso, refrescante y hecho para disfrutar sin afán.",
+    "image": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Helado artesanal de coco",
+    "fallback": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "19",
+    "name": "Parfait de frutas tropicales",
+    "category": "POSTRES",
+    "price": "$17.000",
+    "description": "Frutas tropicales en una combinación fresca y colorida.",
+    "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Parfait de frutas tropicales",
+    "fallback": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "20",
+    "name": "Enyucado gourmet",
+    "category": "POSTRES",
+    "price": "$16.000",
+    "description": "Un clásico de nuestra cocina en una versión especial.",
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Enyucado gourmet",
+    "fallback": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "21",
+    "name": "Caballito de papaya",
+    "category": "POSTRES",
+    "price": "$15.000",
+    "description": "Dulce tradición costeña en cada cucharada.",
+    "image": "https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Caballito de papaya",
+    "fallback": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "22",
+    "name": "Copa de vino tinto",
+    "category": "BEBIDAS",
+    "price": "$12.000",
+    "description": "Un clásico para acompañar la mesa.",
+    "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Copa de vino tinto",
+    "fallback": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "23",
+    "name": "Copa de vino blanco",
+    "category": "BEBIDAS",
+    "price": "$12.000",
+    "description": "Fresco y elegante para brindar a tu manera.",
+    "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Copa de vino blanco",
+    "fallback": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "24",
+    "name": "Copa de verano",
+    "category": "BEBIDAS",
+    "price": "$14.000",
+    "description": "Un brindis fresco para alargar la conversación.",
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Copa de verano",
+    "fallback": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "25",
+    "name": "Margarita",
+    "category": "BEBIDAS",
+    "price": "$20.000",
+    "description": "Un clásico cítrico con espíritu de celebración.",
+    "image": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Margarita",
+    "fallback": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "26",
+    "name": "Piña colada",
+    "category": "BEBIDAS",
+    "price": "$20.000",
+    "description": "Un sorbo tropical para cambiar de paisaje.",
+    "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Piña colada",
+    "fallback": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "27",
+    "name": "Beso de Jamaica",
+    "category": "BEBIDAS",
+    "price": "$12.000",
+    "description": "Una bebida fresca con el carácter floral de Jamaica.",
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Beso de Jamaica",
+    "fallback": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "28",
+    "name": "Michelada de frutos amarillos",
+    "category": "BEBIDAS",
+    "price": "$17.000",
+    "description": "Un giro frutal y refrescante para disfrutar a tu ritmo.",
+    "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Michelada de frutos amarillos",
+    "fallback": "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "29",
+    "name": "Michelada de frutos rojos",
+    "category": "BEBIDAS",
+    "price": "$17.000",
+    "description": "Color, frescura y un toque frutal en cada sorbo.",
+    "image": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Michelada de frutos rojos",
+    "fallback": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "30",
+    "name": "Limonada de coco",
+    "category": "BEBIDAS",
+    "price": "$16.000",
+    "description": "La frescura del limón con un giro de coco.",
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Limonada de coco",
+    "fallback": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=78"
+  },
+  {
+    "id": "31",
+    "name": "Limonada de hierbabuena",
+    "category": "BEBIDAS",
+    "price": "$15.000",
+    "description": "Cítrica, fresca y con aroma de hierbabuena.",
+    "image": "https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=900&q=82",
+    "alt": "Imagen ilustrativa de Limonada de hierbabuena",
+    "fallback": "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=900&q=78"
+  }
+]
