@@ -16,7 +16,7 @@
 
 La carpeta `avance-1/` conserva la versión del primer avance. `avance-2/` contiene los archivos HTML, CSS, JavaScript y datos de la segunda entrega. `english-carrer/` mantiene el proyecto de inglés por separado.
 
-La raíz del repositorio conserva una copia publicable de Cecilia para que el enlace principal abra directamente el restaurante. Las dos versiones de Cecilia comparten el logotipo ubicado en `assets/cecilia-logo.webp`.
+La dirección principal de GitHub Pages abre la entrega final de Vue publicada en `entrega-final/`. Las dos versiones de Cecilia comparten el logotipo ubicado en `assets/cecilia-logo.webp`.
 
 ## WhatsApp
 
