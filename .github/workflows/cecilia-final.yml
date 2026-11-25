@@ -34,7 +34,9 @@ jobs:
         run: |
           mkdir -p entrega-final
           rsync -a --delete avance-final/dist/ entrega-final/
-          git add entrega-final avance-final/package-lock.json
+          sed 's|\./assets/|./entrega-final/assets/|g' entrega-final/index.html > index.html
+          cp entrega-final/data.json data.json
+          git add index.html data.json entrega-final avance-final/package-lock.json
           if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

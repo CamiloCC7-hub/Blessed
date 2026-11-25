@@ -1,6 +1,6 @@
 # Cecilia Restaurante · Entrega final
 
-[Aplicación en producción](https://camilocc7-hub.github.io/Blessed/entrega-final/) · [Repositorio](https://github.com/CamiloCC7-hub/Blessed)
+[Aplicación en producción](https://camilocc7-hub.github.io/Blessed/) · [Repositorio](https://github.com/CamiloCC7-hub/Blessed)
 
 SPA académica para explorar la carta de Cecilia Restaurante en Sahagún, guardar antojos y preparar una solicitud de mesa. Conserva los 31 platos, precios, fotografías de referencia, relatos y curiosidades del avance 2. El equipo del restaurante confirma las reservas por WhatsApp. Las opiniones, solicitudes y borradores se almacenan únicamente en el navegador.
 
@@ -36,7 +36,7 @@ npm run preview
 
 ## Publicación continua
 
-El flujo `.github/workflows/cecilia-final.yml` instala las dependencias y ejecuta el build al actualizar la SPA en main. Publica los archivos compilados en `entrega-final/` de la rama que ya sirve GitHub Pages. Los avances anteriores conservan sus direcciones.
+El flujo `.github/workflows/cecilia-final.yml` instala las dependencias y ejecuta el build al actualizar la SPA en main. Publica la aplicación en la raíz de GitHub Pages. La portada carga los recursos compilados de `entrega-final/assets/`. Los avances anteriores conservan sus direcciones.
 
 ## Sustentación individual
 
