@@ -1,10 +1,10 @@
-# Cecilia Restaurante
+# Cecilia Restaurante · Tercer avance
 
-**Cecilia ocupa la portada del repositorio y de GitHub Pages.** La página principal está publicada en [camilocc7-hub.github.io/Blessed](https://camilocc7-hub.github.io/Blessed/).
+## [Abrir la entrega final en GitHub Pages ↗](https://camilocc7-hub.github.io/Blessed/entrega-final/)
 
-## Entrega final con Vue 3
+**Enlace para compartir:** https://camilocc7-hub.github.io/Blessed/entrega-final/
 
-[Aplicación final](https://camilocc7-hub.github.io/Blessed/entrega-final/) · [Código, instalación y guía de sustentación](./avance-final/README.md)
+[Código Vue, instalación y guía de sustentación](./avance-final/README.md)
 
 ## Proyectos
 
